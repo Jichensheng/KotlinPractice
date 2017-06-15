@@ -5,12 +5,18 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.Xfermode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -18,6 +24,7 @@ import android.view.View;
  * author：Jics
  * 2017/6/15 13:11
  */
+@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class BitmapView extends View {
 	private static final int W = 64;
 	private static final int H = 64;
@@ -62,6 +69,7 @@ public class BitmapView extends View {
 
 	public BitmapView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+
 		mSrcB = makeSrc(W, H);
 		mDstB = makeDst(W, H);
 		// 棋盘纹理
@@ -71,6 +79,7 @@ public class BitmapView extends View {
 		mBG = new BitmapShader(bm,//指的是要作为纹理的图片
 				Shader.TileMode.REPEAT,//指的是在ｘ方向纹理的绘制模式
 				Shader.TileMode.REPEAT);//指的是Ｙ方向上的绘制模式
+
 		/*Matrix m = new Matrix();
 		m.setScale(6, 6);
 		mBG.setLocalMatrix(m);*/
@@ -97,6 +106,32 @@ public class BitmapView extends View {
 	protected void onDraw(Canvas canvas) {
 		canvas.drawColor(Color.WHITE);
 
+		Bitmap bitmap=getBitmapFromDrawable(getResources().getDrawable(R.drawable.ssss,null));
+		int width=bitmap.getWidth();
+		int height=bitmap.getHeight();
+		BitmapShader shader=new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+
+		Matrix matrix=new Matrix();
+//		matrix.postRotate(60,width/2,height/2);//先相对于自身中点旋转
+		matrix.postTranslate(570-width/2,270-height/2);//相对于坐标系原点移动
+		shader.setLocalMatrix(matrix);
+		Paint shaderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+		shaderPaint.setShader(shader);
+		canvas.drawCircle(570,270,width/2,shaderPaint);
+		canvas.drawRect(320,10,320+width,50,shaderPaint);
+		canvas.drawArc(400+width,10,400+width*2,width,90,130,true,shaderPaint);
+		shaderPaint.setStrokeWidth(50);
+		canvas.drawLine(0,0,600,600,shaderPaint);
+
+		Paint border=new Paint(Paint.ANTI_ALIAS_FLAG);
+		border.setStrokeWidth(3);
+		border.setColor(Color.RED);
+		border.setStyle(Paint.Style.STROKE);
+		border.setDither(true);
+//		canvas.drawCircle(570,270,width/2+5,border);
+
+
+
 		Paint labelP = new Paint(Paint.ANTI_ALIAS_FLAG);
 		labelP.setTextAlign(Paint.Align.CENTER);
 
@@ -110,13 +145,13 @@ public class BitmapView extends View {
 		for (int i = 0; i < sModes.length; i++) {
 			// 画棋盘边界
 			paint.setStyle(Paint.Style.STROKE);
-			paint.setShader(null);
+			paint.setShader(null);//使用纹理填充
 			canvas.drawRect(x - 0.5f, y - 0.5f,
 					x + W + 0.5f, y + H + 0.5f, paint);
 
 			// 用shader填充棋盘
 			paint.setStyle(Paint.Style.FILL);
-			paint.setShader(mBG);
+			paint.setShader(mBG);//使用纹理填充
 			canvas.drawRect(x, y, x + W, y + H, paint);
 
 			// draw the src/dst example into our offscreen bitmap
@@ -164,4 +199,40 @@ public class BitmapView extends View {
 		return bm;
 	}
 
+	/**
+	 * drawable转bitmap
+	 *
+	 * @param drawable
+	 * @return
+	 */
+	private Bitmap getBitmapFromDrawable(Drawable drawable) {
+		int COLORDRAWABLE_DIMENSION = 1;
+		int DEFAULT_BORDER_WIDTH = 0;
+		Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
+		if (drawable == null) {
+			return null;
+		}
+
+		if (drawable instanceof BitmapDrawable) {
+			return ((BitmapDrawable) drawable).getBitmap();
+		}
+
+		try {
+			Bitmap bitmap;
+
+			if (drawable instanceof ColorDrawable) {
+				bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG);
+			} else {
+				bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(),
+						BITMAP_CONFIG);
+			}
+
+			Canvas canvas = new Canvas(bitmap);
+			drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+			drawable.draw(canvas);
+			return bitmap;
+		} catch (OutOfMemoryError e) {
+			return null;
+		}
+	}
 }
