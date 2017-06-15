@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--属性变量-->
+
+    <!--圆球半径-->
+    <attr name="radius" format="dimension"/>
+    <!--圆球间距-->
+    <attr name="gap" format="dimension"/>
+
+    <declare-styleable name="CouponDisplayView">
+        <attr name="radius"/>
+        <attr name="gap"/>
+    </declare-styleable>
+</resources>
