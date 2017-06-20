@@ -52,6 +52,11 @@ public class LogoLoadingView extends View {
 		setMeasuredDimension(bitmap.getWidth(), bitmap.getHeight());
 	}
 
+	/**
+	 * =============================================
+	 *
+	 * =============================================
+	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);

@@ -73,7 +73,7 @@ public class BitmapView extends View {
 		mSrcB = makeSrc(W, H);
 		mDstB = makeDst(W, H);
 		// 棋盘纹理
-		Bitmap bm = Bitmap.createBitmap(getBlock(10, 10), 8, 8,
+		Bitmap bm = Bitmap.createBitmap(getBlock(8, 8), 8, 8,
 				Bitmap.Config.RGB_565);
 		//BitmapShader的作用是使用特定的图片来作为纹理来使用
 		mBG = new BitmapShader(bm,//指的是要作为纹理的图片
@@ -112,7 +112,7 @@ public class BitmapView extends View {
 		BitmapShader shader=new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
 
 		Matrix matrix=new Matrix();
-//		matrix.postRotate(60,width/2,height/2);//先相对于自身中点旋转
+		matrix.postRotate(60,width/2,height/2);//先相对于自身中点旋转
 		matrix.postTranslate(570-width/2,270-height/2);//相对于坐标系原点移动
 		shader.setLocalMatrix(matrix);
 		Paint shaderPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -128,7 +128,7 @@ public class BitmapView extends View {
 		border.setColor(Color.RED);
 		border.setStyle(Paint.Style.STROKE);
 		border.setDither(true);
-//		canvas.drawCircle(570,270,width/2+5,border);
+		canvas.drawCircle(570,270,width/2+5,border);
 
 
 
@@ -156,7 +156,7 @@ public class BitmapView extends View {
 
 			// draw the src/dst example into our offscreen bitmap
 			int sc = canvas.saveLayer(x, y, x + W, y + H, null, Canvas.MATRIX_SAVE_FLAG | Canvas.CLIP_SAVE_FLAG | Canvas.HAS_ALPHA_LAYER_SAVE_FLAG | Canvas.FULL_COLOR_LAYER_SAVE_FLAG | Canvas.CLIP_TO_LAYER_SAVE_FLAG);
-			canvas.translate(x, y);
+			canvas.translate(x, y);//平移画布只影响save-restore之内的
 			canvas.drawBitmap(mDstB, 0, 0, paint);
 			paint.setXfermode(sModes[i]);
 			canvas.drawBitmap(mSrcB, 0, 0, paint);
@@ -167,7 +167,6 @@ public class BitmapView extends View {
 			canvas.drawText(sLabels[i], x + W / 2, y - labelP.getTextSize() / 2, labelP);
 
 			x += W + 10;
-
 			// wrap around when we've drawn enough for one row
 			if ((i % ROW_MAX) == ROW_MAX - 1) {
 				x = 0;

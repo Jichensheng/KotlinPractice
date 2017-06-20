@@ -95,6 +95,7 @@ public class Xfermodes extends Activity {
             mBG = new BitmapShader(bm,//指的是要作为纹理的图片
                                    Shader.TileMode.REPEAT,//指的是在ｘ方向纹理的绘制模式
                                    Shader.TileMode.REPEAT);//指的是Ｙ方向上的绘制模式
+            //2*2的方格太小了，在此用matrix扩展成6*6的
             Matrix m = new Matrix();
             m.setScale(6, 6);
             mBG.setLocalMatrix(m);
@@ -116,7 +117,7 @@ public class Xfermodes extends Activity {
             for (int i = 0; i < sModes.length; i++) {
                 // draw the border
                 paint.setStyle(Paint.Style.STROKE);
-                paint.setShader(null);
+                paint.setShader(null);//防止上个循环的shader影响到本次
                 canvas.drawRect(x - 0.5f, y - 0.5f,
                                 x + W + 0.5f, y + H + 0.5f, paint);
 
@@ -136,7 +137,7 @@ public class Xfermodes extends Activity {
                 canvas.drawBitmap(mDstB, 0, 0, paint);
                 paint.setXfermode(sModes[i]);
                 canvas.drawBitmap(mSrcB, 0, 0, paint);
-                paint.setXfermode(null);
+//                paint.setXfermode(null);
                 canvas.restoreToCount(sc);
 
                 // draw the label
