@@ -1,4 +1,4 @@
-package com.heshun.firstkotlin;
+package com.heshun.firstkotlin.customer;
 
 import android.app.Activity;
 import android.content.Context;

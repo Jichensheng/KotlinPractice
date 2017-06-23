@@ -23,4 +23,9 @@ public class Test {
 		}
 		return result;
 	}
+	public static float bytes2IEEE754(byte b1,byte b2 ,byte b3,byte b4){
+
+
+		return 1f;
+	}
 }

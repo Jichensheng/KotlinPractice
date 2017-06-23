@@ -1,4 +1,4 @@
-package com.heshun.firstkotlin;
+package com.heshun.firstkotlin.customer;
 
 import android.content.Context;
 import android.graphics.Bitmap;

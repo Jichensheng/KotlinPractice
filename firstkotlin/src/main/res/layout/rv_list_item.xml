@@ -9,10 +9,10 @@
         android:textSize="16sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <com.heshun.firstkotlin.LogoLoadingView android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"/>
+    <com.heshun.firstkotlin.customer.LogoLoadingView android:layout_width="wrap_content"
+                                                     android:layout_height="wrap_content"/>
 
-    <com.heshun.firstkotlin.CouponDisplayView
+    <com.heshun.firstkotlin.customer.CouponDisplayView
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:padding="16dp"
@@ -60,5 +60,5 @@
                 android:text="截止日期:2017年7月14日"
                 android:textSize="12dp" />
         </LinearLayout>
-    </com.heshun.firstkotlin.CouponDisplayView>
+    </com.heshun.firstkotlin.customer.CouponDisplayView>
 </LinearLayout>

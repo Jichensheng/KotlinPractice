@@ -1,4 +1,4 @@
-package com.heshun.firstkotlin;
+package com.heshun.firstkotlin.customer;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,8 @@ import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.widget.LinearLayout;
+
+import com.heshun.firstkotlin.R;
 
 /**
  * author：Jics

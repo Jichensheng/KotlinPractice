@@ -9,19 +9,21 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.ImageView
 import android.widget.Toast
+import com.heshun.firstkotlin.customer.FlowLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
     private var mImageView: ImageView? = null
-
+    var fl_flow: FlowLayout?=null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initView()
     }
     fun initView(){
+        fl_flow=findViewById(R.id.fl_flow) as FlowLayout
         tv_kotlinx.text = "你好，kotlin！"
         Thread(Runnable { tv_kotlinx.text = "不错，我是在非UI线程里" }).start()
         tv_kotlinx.setOnClickListener {Toast.makeText(this@MainActivity,"nihao",Toast.LENGTH_SHORT).show()}
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         for(i in 0..120){
             mutList.add("第$i 天")
         }
+
         rv_list.adapter=RvListAdapter(this,list)
         rv_list.layoutManager = LinearLayoutManager(this)
         mImageView = findViewById(R.id.iv_image) as ImageView

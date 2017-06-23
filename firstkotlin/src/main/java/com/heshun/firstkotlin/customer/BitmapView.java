@@ -1,4 +1,4 @@
-package com.heshun.firstkotlin;
+package com.heshun.firstkotlin.customer;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -19,6 +19,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.heshun.firstkotlin.R;
 
 /**
  * author：Jics
