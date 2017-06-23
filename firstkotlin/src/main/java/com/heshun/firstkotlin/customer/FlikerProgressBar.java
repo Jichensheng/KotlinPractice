@@ -212,8 +212,8 @@ public class FlikerProgressBar extends View implements Runnable{
 
 		float right = (progress / maxProgress) * getMeasuredWidth();
 		pgCanvas.save(Canvas.CLIP_SAVE_FLAG);
-		pgCanvas.clipRect(0, 0, right, getMeasuredHeight());
-		pgCanvas.drawColor(progressColor);
+			pgCanvas.clipRect(0, 0, right, getMeasuredHeight());
+			pgCanvas.drawColor(progressColor);
 		pgCanvas.restore();
 
 		if(!isStop){
@@ -238,6 +238,7 @@ public class FlikerProgressBar extends View implements Runnable{
 		textPaint.getTextBounds(progressText, 0, progressText.length(), textRect);
 		int tWidth = textRect.width();
 		int tHeight = textRect.height();
+		//（xCoordinate,yCoordinate）让文字居中的起始坐标
 		float xCoordinate = (getMeasuredWidth() - tWidth) / 2;
 		float yCoordinate = (getMeasuredHeight() + tHeight) / 2;
 		canvas.drawText(progressText, xCoordinate, yCoordinate, textPaint);
@@ -256,7 +257,9 @@ public class FlikerProgressBar extends View implements Runnable{
 		float progressWidth = (progress / maxProgress) * getMeasuredWidth();
 		if(progressWidth > xCoordinate){
 			canvas.save(Canvas.CLIP_SAVE_FLAG);
+			//进度条到起点的距离 和 文字右侧到控件起点的距离 选最小
 			float right = Math.min(progressWidth, xCoordinate + tWidth * 1.1f);
+			//变色部分的文字的宽度就是裁剪后的画布的宽度
 			canvas.clipRect(xCoordinate, 0, right, getMeasuredHeight());
 			canvas.drawText(progressText, xCoordinate, yCoordinate, textPaint);
 			canvas.restore();
@@ -303,6 +306,9 @@ public class FlikerProgressBar extends View implements Runnable{
 		}
 	}
 
+	/**
+	 * 控制闪烁位置变动的进程
+	 */
 	@Override
 	public void run() {
 		int width = flikerBitmap.getWidth();
