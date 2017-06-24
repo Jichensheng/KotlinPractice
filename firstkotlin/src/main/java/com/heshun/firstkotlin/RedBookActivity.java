@@ -76,19 +76,19 @@ public class RedBookActivity extends AppCompatActivity implements OnIndicatorScr
 			switch (position) {
 				case 0:
 					start.set(mStart.x, mStart.y);
-					end.set(mCenter.x / 2 - iv_head.getMeasuredWidth() * 0.3f, mCenter.y / 2 - iv_head.getMeasuredHeight() * 1.3f);
+					end.set(mCenter.x / 2 - iv_head.getMeasuredWidth() * 0.25f, mCenter.y / 2 - iv_head.getMeasuredHeight() * 1.2f);
 					if (positionOffset != 0) {
 						translateView(iv_head, start, end, positionOffset);
-						scalView(iv_head,1f,0.6f,positionOffset);
+						scalView(iv_head,1f,0.3f,positionOffset);
 					}
 					break;
 				case 1:
-					start.set(mCenter.x / 2 - iv_head.getMeasuredWidth() * 0.3f, mCenter.y / 2 - iv_head.getMeasuredHeight() * 1.3f);
+					start.set(mCenter.x / 2 - iv_head.getMeasuredWidth() * 0.25f, mCenter.y / 2 - iv_head.getMeasuredHeight() * 1.2f);
 //					end.set(mCenter.x / 2 - 200, mStart.y + 20);
 					end.set(mStart.x, mStart.y);
 					if (positionOffset != 0) {
 						translateView(iv_head, start, end, positionOffset);
-						scalView(iv_head,0.6f,0.8f,positionOffset);
+						scalView(iv_head,0.35f,0.8f,positionOffset);
 					}
 					break;
 
@@ -103,8 +103,6 @@ public class RedBookActivity extends AppCompatActivity implements OnIndicatorScr
 		float sY = start.y;
 		float eX = end.x;
 		float eY = end.y;
-//		float currentX = Math.min(sX, eX) + Math.abs((eX - sX) * persent);
-//		float currentY = Math.min(sY, eY) + Math.abs((eY - sY) * persent);
 		float currentX = sX + (eX - sX) * persent;
 		float currentY = sY + (eY - sY) * persent;
 		view.setX(currentX);

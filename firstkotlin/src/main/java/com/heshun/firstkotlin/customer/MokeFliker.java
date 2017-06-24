@@ -44,7 +44,7 @@ public class MokeFliker extends View {
 	public MokeFliker(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		textPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
-		textPaint.setTextSize(36);
+		textPaint.setTextSize(45);
 	}
 
 	@Override
