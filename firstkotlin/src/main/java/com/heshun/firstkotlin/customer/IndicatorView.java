@@ -12,6 +12,7 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.heshun.firstkotlin.R;
+import com.heshun.firstkotlin.interfaces.OnIndicatorScrollListener;
 
 /**
  * author：Jics
@@ -46,6 +47,7 @@ public class IndicatorView extends View implements ViewPager.OnPageChangeListene
 	* 以便其他调用
 	* */
 	private ViewPager.OnPageChangeListener mPageChangeListener ;
+	private OnIndicatorScrollListener onIndicatorScrollListener;
 
 	public IndicatorView(Context context) {
 		this(context, null);
@@ -226,7 +228,17 @@ public class IndicatorView extends View implements ViewPager.OnPageChangeListene
 	public void setOnPageChangeListener(ViewPager.OnPageChangeListener mPageChangeListener) {
 		this.mPageChangeListener = mPageChangeListener;
 	}
+	public void setOnIndicatorScroll(OnIndicatorScrollListener onIndicatorScrollListener){
+		this.onIndicatorScrollListener=onIndicatorScrollListener;
 
+	}
+
+	/**
+	 * 手松得快指示器就会跳
+	 * @param position
+	 * @param positionOffset
+	 * @param positionOffsetPixels
+	 */
 	@Override
 	public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 		Log.v("zgy","========"+position+",===offset" + positionOffset) ;
@@ -235,9 +247,8 @@ public class IndicatorView extends View implements ViewPager.OnPageChangeListene
 			mOffset = positionOffset ;
 			invalidate();
 		}
-		if(mPageChangeListener != null){
-			mPageChangeListener.onPageScrolled(position,positionOffset,positionOffsetPixels);
-		}
+		onIndicatorScrollListener.onScroll(position,positionOffset,positionOffsetPixels);
+
 	}
 
 	@Override
@@ -246,16 +257,9 @@ public class IndicatorView extends View implements ViewPager.OnPageChangeListene
 		mSelectItem = position ;
 		invalidate();
 
-		if(mPageChangeListener != null){
-			mPageChangeListener.onPageSelected(position);
-		}
 	}
 
 	@Override
 	public void onPageScrollStateChanged(int state) {
-
-		if(mPageChangeListener != null){
-			mPageChangeListener.onPageScrollStateChanged(state);
-		}
 	}
 }

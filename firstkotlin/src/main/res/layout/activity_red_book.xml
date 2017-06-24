@@ -58,8 +58,7 @@
         android:layout_centerHorizontal="true"
         android:padding="5dp"
         app:indicator_icon="@drawable/indicator_selector"
-        app:indicator_margin="5dp"
-        app:indicator_smooth="true"
+        app:indicator_margin="7dp"
     />
     <android.support.v4.view.ViewPager
         android:id="@+id/vp_container"
@@ -75,7 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
-        android:layout_marginTop="63dp"
+        android:layout_marginTop="65dp"
         android:src="@drawable/xy_walkthroughs_account"
     />
 </RelativeLayout>
