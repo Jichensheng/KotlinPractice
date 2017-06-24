@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:background="@drawable/xy_walkthroughs_bg1"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/ll_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击"
+            android:textSize="16sp"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="登录"
+            android:textColor="#ea4b4b"
+            android:textSize="16sp"
+        />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="，进入小红书"
+            android:textSize="15sp"
+        />
+    </LinearLayout>
+    <Button
+        android:id="@+id/btn_reg"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@id/ll_text"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/radius_btn"
+        android:text="快速注册"
+        android:textColor="#fff"
+        android:textSize="18sp"
+
+    />
+
+    <com.heshun.firstkotlin.customer.IndicatorView
+        android:id="@+id/idv_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_reg"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        app:indicator_icon="@drawable/indicator_selector"
+        app:indicator_margin="5dp"
+        app:indicator_smooth="true"
+    />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" >
+
+    </android.support.v4.view.ViewPager>
+    <ImageView
+        android:id="@+id/iv_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="63dp"
+        android:src="@drawable/xy_walkthroughs_account"
+    />
+</RelativeLayout>
