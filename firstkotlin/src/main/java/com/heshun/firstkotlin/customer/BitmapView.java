@@ -178,7 +178,7 @@ public class BitmapView extends View {
 	}
 
 
-	// create a bitmap with a circle, used for the "dst" image
+	// create beeline bitmap with beeline circle, used for the "dst" image
 	static Bitmap makeDst(int w, int h) {
 		Bitmap bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 		Canvas c = new Canvas(bm);
@@ -189,7 +189,7 @@ public class BitmapView extends View {
 		return bm;
 	}
 
-	// create a bitmap with a rect, used for the "src" image
+	// create beeline bitmap with beeline rect, used for the "src" image
 	static Bitmap makeSrc(int w, int h) {
 		Bitmap bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 		Canvas c = new Canvas(bm);

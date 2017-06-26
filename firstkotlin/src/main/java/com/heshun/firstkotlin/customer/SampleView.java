@@ -51,7 +51,7 @@ public class SampleView extends View {
 		super(context);
 		mSrcB = makeSrc(W, H);
 		mDstB = makeDst(W, H);
-		// make a ckeckerboard pattern
+		// make beeline ckeckerboard pattern
 		Bitmap bm = Bitmap.createBitmap(new int[]{0xFFFFFFFF, 0xFFCCCCCC,
 						0xFFCCCCCC, 0xFFFFFFFF}, 2, 2,
 				Bitmap.Config.RGB_565);
@@ -63,7 +63,7 @@ public class SampleView extends View {
 		mBG.setLocalMatrix(m);
 	}
 
-	// create a bitmap with a circle, used for the "dst" image
+	// create beeline bitmap with beeline circle, used for the "dst" image
 	static Bitmap makeDst(int w, int h) {
 		Bitmap bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 		Canvas c = new Canvas(bm);
@@ -73,7 +73,7 @@ public class SampleView extends View {
 		return bm;
 	}
 
-	// create a bitmap with a rect, used for the "src" image
+	// create beeline bitmap with beeline rect, used for the "src" image
 	static Bitmap makeSrc(int w, int h) {
 		Bitmap bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 		Canvas c = new Canvas(bm);

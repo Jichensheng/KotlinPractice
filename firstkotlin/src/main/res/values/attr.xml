@@ -31,4 +31,10 @@
         <attr name="indicator_margin" format="dimension"/>
         <attr name="indicator_smooth" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="PPRefreshView_header">
+        <attr name="header_height" format="dimension"/>
+        <attr name="header_padding" format="dimension"/>
+    </declare-styleable>
+
 </resources>
