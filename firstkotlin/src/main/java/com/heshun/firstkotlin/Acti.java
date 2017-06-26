@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 /**
- * author：Jics
+ * author：Jicsd
  * 2017/6/24 11:33
  */
 public class Acti extends Activity implements View.OnClickListener{
