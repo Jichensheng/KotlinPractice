@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         val mutList:MutableList<String> = mutableListOf()
         val list:List<String> = mutList
-        for(i in 0..120){
+        for(i in 0..10){
             mutList.add("第$i 天")
         }
 

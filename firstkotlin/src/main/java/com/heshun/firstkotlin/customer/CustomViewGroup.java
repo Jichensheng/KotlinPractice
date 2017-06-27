@@ -2,6 +2,7 @@ package com.heshun.firstkotlin.customer;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -22,8 +23,17 @@ public class CustomViewGroup extends ViewGroup {
 		super(context, attrs, defStyleAttr);
 	}
 
+	/**
+	 *
+	 * @param changed
+	 * @param l 本Group相对于其父控件的坐标
+	 * @param t
+	 * @param r
+	 * @param b
+	 */
 	@Override
 	protected void onLayout(boolean changed, int l, int t, int r, int b) {
+		Log.e("~~~~~~~~~~~", String.format("L=%s,T=%s,R=%s,B=%s",l,t,r,b) );
 		int cCount = getChildCount();
 		int cWidth = 0;
 		int cHeight = 0;

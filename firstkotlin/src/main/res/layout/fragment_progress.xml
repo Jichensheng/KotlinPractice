@@ -1,26 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
               android:paddingBottom="@dimen/activity_vertical_margin"
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              android:orientation="vertical">
-    <com.heshun.firstkotlin.customer.MokeFliker
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+              android:paddingTop="@dimen/activity_vertical_margin">
+    <ScrollView android:layout_width="match_parent"
+                android:layout_height="300dp">
+        <com.heshun.firstkotlin.customer.GroupTouchEvent
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#eebbcc">
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="#eeddaa"
+            />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="400dp"
+                android:layout_margin="10dp"
+                android:background="#b6eeaa"
+            />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="#abaaee"
+            />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="400dp"
+                android:layout_margin="10dp"
+                android:background="#eebbaa"
+            />
+            <TextView
+                android:layout_width="99dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="#eeaac7"
+            />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="400dp"
+                android:layout_margin="10dp"
+                android:background="#c9eeaa"
+            />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="#e2b632"
+            />
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="400dp"
+                android:layout_margin="10dp"
+                android:background="#e442df"
+            />
+        </com.heshun.firstkotlin.customer.GroupTouchEvent>
+    </ScrollView>
 
+
+    <com.heshun.firstkotlin.customer.MokeFliker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
     <com.heshun.firstkotlin.customer.FlikerProgressBar
         android:id="@+id/flikerbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textSize="16sp"
         app:loadingColor="#40c4ff"
         app:stopColor="#ff9800"
+        app:textSize="16sp"
     />
 
     <Button
@@ -33,10 +90,10 @@
         android:id="@+id/round_flikerbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:textSize="16sp"
         app:loadingColor="#40c4ff"
-        app:stopColor="#ff9800"
         app:radius="20dp"
+        app:stopColor="#ff9800"
+        app:textSize="16sp"
     />
 
 </LinearLayout>

@@ -88,9 +88,12 @@ public class MokeFliker extends View {
 			case MeasureSpec.AT_MOST:
 				height = dp2px(36);
 				break;
+			//不带break的case响当当与只要这两个其中一个满足就行，或的关系
 			case MeasureSpec.EXACTLY:
-			case MeasureSpec.UNSPECIFIED:
 				height = heightSpecSize;
+				break;
+			case MeasureSpec.UNSPECIFIED:
+				height = dp2px(36);
 				break;
 		}
 		setMeasuredDimension(widthSpecSize, height);

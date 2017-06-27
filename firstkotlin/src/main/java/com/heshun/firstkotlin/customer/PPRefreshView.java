@@ -19,7 +19,9 @@ import com.heshun.firstkotlin.R;
 import com.heshun.firstkotlin.tools.DimentionUtils;
 
 /**
- * 手指按下
+ * 手指按下记录起点
+ * 手指滑动记录距离，距离达到一定数值开始播放上下箭头旋转的动画，move过程不断requestLayout来让控件自动measure
+ * 手指抬起，将headView隐藏，用动画view替换
  */
 public class PPRefreshView extends ViewGroup {
 	private Context context;
@@ -164,7 +166,8 @@ public class PPRefreshView extends ViewGroup {
 						//计算上边距
 						listTop = mLastY - mYDown;
 						//阻尼效果
-						int temp = (int) (maxTop * (Math.log(listTop) / Math.log(maxTop)));
+//						int temp = (int) (maxTop * (Math.log(listTop) / Math.log(maxTop)));
+						int temp = listTop/2;
 						listTop = Math.min(listTop,temp);
 						if (mPPView != null) {
 							removeView(mPPView);
