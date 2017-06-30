@@ -5,16 +5,13 @@ package com.heshun.firstkotlin.tools;
  * 2017/6/26 15:52
  */
 public class Test {
-	public static final int MAX = 1000;
+	public static final int MAX = 100;
 //e^x/(1+e^x)
 	public static void main(String[] args) {
-		for (double i = 1; i < 1000; i++) {
-			double dd=Math.pow(1.01,i);
-			System.out.println(dd/(1+dd));
+		for (int i = 0; i < MAX; i++) {
+			int total='z'-'A';
+			System.out.println(Character.valueOf((char) ((i%total)+'A')));
 		}
 	}
-	public static float getS(int current){
-		double dd=Math.pow(1.01,current);
-		return (float) (dd/(1+dd));
-	}
+
 }

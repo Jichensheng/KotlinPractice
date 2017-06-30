@@ -37,6 +37,7 @@ public class FishLayout extends RelativeLayout implements FoodView.OnFoodClickLi
 
 	private long animatorDuration = 1000;
 
+	//起点 终点 控制点1 控制点2
 	private List<PointF> resultList;
 
 	private Handler ha = new Handler();
@@ -98,7 +99,9 @@ public class FishLayout extends RelativeLayout implements FoodView.OnFoodClickLi
 	}
 
 	/**
+	 *
 	 * @param target
+	 * @param listPoint 起点 终点 控制1点 控制2点
 	 * @return
 	 */
 	private ValueAnimator getBezierValueAnimator(FishView target, List<PointF> listPoint) {
@@ -108,8 +111,7 @@ public class FishLayout extends RelativeLayout implements FoodView.OnFoodClickLi
 				listPoint.get(3), fishView);
 
 		//估值器  底部中点  顶部随机点——》f估（低点，顶点）以时间为自变量PointF为因变量
-		ValueAnimator animator = ValueAnimator.ofObject(evaluator, listPoint.get(0),
-				listPoint.get(1));
+		ValueAnimator animator = ValueAnimator.ofObject(evaluator, listPoint.get(0),listPoint.get(1));
 		animator.addUpdateListener(new BezierListenr(target));
 		animator.setTarget(target);
 		animator.setDuration(animatorDuration);

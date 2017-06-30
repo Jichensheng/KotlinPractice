@@ -9,9 +9,9 @@
     android:layout_height="wrap_content">
 
 </com.heshun.canvasdemo.customerView.fruits.FruitsView>
-    <com.heshun.canvasdemo.customerView.fish.FishLayout
+<!--    <com.heshun.canvasdemo.customerView.fish.FishLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </com.heshun.canvasdemo.customerView.fish.FishLayout>
+    </com.heshun.canvasdemo.customerView.fish.FishLayout>-->
 </RelativeLayout>

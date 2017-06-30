@@ -19,8 +19,8 @@ public class BezierEvaluator implements TypeEvaluator<PointF> {
 	 * 三阶贝塞尔曲线
 	 *
 	 * @param time
-	 * @param startValue
-	 * @param endValue
+	 * @param startValue ofObject的第二个参数
+	 * @param endValue ofObject的第三个参数
 	 * @return
 	 */
 	@Override
@@ -39,7 +39,7 @@ public class BezierEvaluator implements TypeEvaluator<PointF> {
 				* timeLeft * timeLeft * time * (pointF1.y) + 3 * timeLeft
 				* time * time * (pointF2.y) + time * time * time * (endValue.y);
 
-		//鱼儿身体角度
+		//鱼儿身体角度 求导
 		slopeX = (-3 * startValue.x * timeLeft * timeLeft) +
 				(3 * pointF1.x * timeLeft * timeLeft - 6 * pointF1.x * time * timeLeft) +
 				(6 * pointF2.x * time * timeLeft - 3 * pointF2.x * time * time) +
@@ -62,6 +62,7 @@ public class BezierEvaluator implements TypeEvaluator<PointF> {
 			}
 		}
 		fishView.setFatherAngle(angle);
+
 		return point;
 	}
 }

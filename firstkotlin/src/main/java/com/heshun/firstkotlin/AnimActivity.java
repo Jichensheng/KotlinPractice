@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -14,6 +15,9 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.heshun.firstkotlin.tools.TextEvalueator;
 
 public class AnimActivity extends AppCompatActivity {
 	private LinearLayout firstView;
@@ -135,6 +139,25 @@ public class AnimActivity extends AppCompatActivity {
 //        showAnim.playTogether(fViewScaleXAnim,fViewRotationXAnim,fViewResumeAnim,fViewTransYAnim,fViewAlphaAnim,fViewScaleYAnim,sViewTransYAnim);
         showAnim.playTogether(fViewScaleXAnim,fViewRotationXAnim,fViewResumeAnim,fViewTransYAnim,fViewAlphaAnim,fViewScaleYAnim,sViewTransYAnim);
         showAnim.start();
+
+		final TextView textView =new TextView(this);
+
+		ValueAnimator textAnimator =  ValueAnimator.ofObject(new TextEvalueator(), 'A', 'z');
+		textAnimator.setDuration(2000);
+		textAnimator.setTarget(textView);
+		textAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+			@Override
+			public void onAnimationUpdate(ValueAnimator animation) {
+				final Character c= (char) animation.getAnimatedValue();
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						textView.setText(c);
+					}
+				});
+			}
+		});
+
     }	
 	 
 	private void initHiddenAnim(){
