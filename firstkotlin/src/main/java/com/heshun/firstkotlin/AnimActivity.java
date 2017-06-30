@@ -5,6 +5,8 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.annotation.TargetApi;
+import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
@@ -28,6 +30,7 @@ public class AnimActivity extends AppCompatActivity {
 	private Button mShowButton;
 	private Button mHiddenButton;
 
+	@TargetApi(Build.VERSION_CODES.LOLLIPOP)
 	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,14 @@ public class AnimActivity extends AppCompatActivity {
 
 		final TextView textView = (TextView) findViewById(R.id.tv_text_anim);
 
+		Path path = new Path();
+		path.moveTo(200, 200);
+		path.quadTo(800, 200, 800, 800);
+		ObjectAnimator traslateAnimator = ObjectAnimator.ofFloat(textView, "x", "y", path);
+		traslateAnimator.setDuration(20000);
+		traslateAnimator.setRepeatMode(ValueAnimator.REVERSE);
+		traslateAnimator.setRepeatCount(2000);
+
 		ValueAnimator textAnimator =  ValueAnimator.ofObject(new TextEvalueator(), (int)'A', (int)'z');
 		textAnimator.setDuration(20000);
 		textAnimator.setRepeatCount(2000);
@@ -104,6 +115,7 @@ public class AnimActivity extends AppCompatActivity {
 			}
 		});
 		textAnimator.start();
+		traslateAnimator.start();
 	}
 
 	@Override
