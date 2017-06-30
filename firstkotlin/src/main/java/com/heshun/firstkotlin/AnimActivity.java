@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.animation.BounceInterpolator;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -85,21 +86,24 @@ public class AnimActivity extends AppCompatActivity {
 
 		final TextView textView = (TextView) findViewById(R.id.tv_text_anim);
 
-		ValueAnimator textAnimator =  ValueAnimator.ofObject(new TextEvalueator(), 'A', 'z');
-		textAnimator.setDuration(2000);
+		ValueAnimator textAnimator =  ValueAnimator.ofObject(new TextEvalueator(), (int)'A', (int)'z');
+		textAnimator.setDuration(20000);
+		textAnimator.setRepeatCount(2000);
+		textAnimator.setInterpolator(new BounceInterpolator());
 		textAnimator.setTarget(textView);
 		textAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 			@Override
 			public void onAnimationUpdate(ValueAnimator animation) {
-				final Character c= (char) animation.getAnimatedValue();
+				final int c= (int) animation.getAnimatedValue();
 				runOnUiThread(new Runnable() {
 					@Override
 					public void run() {
-						textView.setText(c);
+						textView.setText(""+(char) c);
 					}
 				});
 			}
 		});
+		textAnimator.start();
 	}
 
 	@Override
