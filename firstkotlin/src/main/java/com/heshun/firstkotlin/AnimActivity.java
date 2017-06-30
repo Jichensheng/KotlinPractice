@@ -80,7 +80,26 @@ public class AnimActivity extends AppCompatActivity {
 			public void onClick(View v){
 				initHiddenAnim();
 			}
-		});		
+		});
+
+
+		final TextView textView = (TextView) findViewById(R.id.tv_text_anim);
+
+		ValueAnimator textAnimator =  ValueAnimator.ofObject(new TextEvalueator(), 'A', 'z');
+		textAnimator.setDuration(2000);
+		textAnimator.setTarget(textView);
+		textAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+			@Override
+			public void onAnimationUpdate(ValueAnimator animation) {
+				final Character c= (char) animation.getAnimatedValue();
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						textView.setText(c);
+					}
+				});
+			}
+		});
 	}
 
 	@Override
@@ -140,23 +159,7 @@ public class AnimActivity extends AppCompatActivity {
         showAnim.playTogether(fViewScaleXAnim,fViewRotationXAnim,fViewResumeAnim,fViewTransYAnim,fViewAlphaAnim,fViewScaleYAnim,sViewTransYAnim);
         showAnim.start();
 
-		final TextView textView =new TextView(this);
 
-		ValueAnimator textAnimator =  ValueAnimator.ofObject(new TextEvalueator(), 'A', 'z');
-		textAnimator.setDuration(2000);
-		textAnimator.setTarget(textView);
-		textAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-			@Override
-			public void onAnimationUpdate(ValueAnimator animation) {
-				final Character c= (char) animation.getAnimatedValue();
-				runOnUiThread(new Runnable() {
-					@Override
-					public void run() {
-						textView.setText(c);
-					}
-				});
-			}
-		});
 
     }	
 	 
