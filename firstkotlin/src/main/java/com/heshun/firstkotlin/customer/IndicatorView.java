@@ -237,7 +237,6 @@ public class IndicatorView extends View implements ViewPager.OnPageChangeListene
 
     public void setOnIndicatorScroll(OnIndicatorScrollListener onIndicatorScrollListener) {
         this.onIndicatorScrollListener = onIndicatorScrollListener;
-
     }
 
     /**

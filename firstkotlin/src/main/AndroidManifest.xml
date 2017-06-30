@@ -16,6 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity2"/>
+        <activity android:name=".TouchActivity"/>
+        <activity android:name=".AnimActivity"/>
         <activity
             android:name=".RedBookActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"

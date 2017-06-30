@@ -1,1 +1,1 @@
-include ':app', ':firstkotlin'
+include ':app', ':firstkotlin', ':canvasdemo'

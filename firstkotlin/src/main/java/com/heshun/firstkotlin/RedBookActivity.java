@@ -98,7 +98,7 @@ public class RedBookActivity extends AppCompatActivity implements OnIndicatorScr
 
 	}
 
-	private void translateView(View view, PointF start, PointF end, float persent) {
+	public void translateView(View view, PointF start, PointF end, float persent) {
 		float sX = start.x;
 		float sY = start.y;
 		float eX = end.x;

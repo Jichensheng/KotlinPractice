@@ -102,24 +102,26 @@ public class GroupTouchEvent extends ViewGroup {
 				Log.e(TAG, "onTouchEvent:ACTION_UP " );
 				break;
 		}
-		return super.onTouchEvent(event);
+		return true;
 	}
+
 
 	@Override
 	public boolean onInterceptTouchEvent(MotionEvent ev) {
 		switch (ev.getAction()){
 			case MotionEvent.ACTION_DOWN:
-				Log.e(TAG, "onTouchEvent:ACTION_DOWN " );
+				Log.e(TAG, "onInterceptTouchEvent:ACTION_DOWN " );
 				break;
 			case MotionEvent.ACTION_MOVE:
-				Log.e(TAG, "onTouchEvent:ACTION_MOVE " );
+				Log.e(TAG, "onInterceptTouchEvent:ACTION_MOVE " );
 				break;
 			case MotionEvent.ACTION_UP:
-				Log.e(TAG, "onTouchEvent:ACTION_UP " );
+				Log.e(TAG, "onInterceptTouchEvent:ACTION_UP " );
 				break;
 		}
-		return super.onInterceptTouchEvent(ev);
+		return true;
 	}
+
 
 	/**
 	 * 返回MarginLayoutParams的实例

@@ -1,26 +1,49 @@
 package com.heshun.firstkotlin.customer;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.heshun.firstkotlin.tools.DimentionUtils;
+
 
 /**
  * author：Jics
  * 2017/6/20 11:09
  */
 public class CustomViewGroup extends ViewGroup {
+	private Paint mTextPaint;
+	private Rect currentRect;
+	private String currentText="";
+
 	public CustomViewGroup(Context context) {
 		super(context);
+		initPaint();
 	}
 
 	public CustomViewGroup(Context context, AttributeSet attrs) {
 		super(context, attrs);
+		setWillNotDraw(false);
+		initPaint();
 	}
 
 	public CustomViewGroup(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
+		setWillNotDraw(false);
+		initPaint();
+	}
+
+	private void initPaint() {
+		mTextPaint=new Paint(Paint.ANTI_ALIAS_FLAG);
+		mTextPaint.setTextSize(DimentionUtils.px2sp(getContext(),16f));
+		mTextPaint.setColor(Color.BLACK);
+		currentRect=new Rect();
 	}
 
 	/**
@@ -68,7 +91,22 @@ public class CustomViewGroup extends ViewGroup {
 			cr=cl+cWidth;
 			cb=cHeight+ct;
 			childView.layout(cl,ct,cr,cb);
+			currentRect.set(cl,ct,cr,cb);
+			currentText=i+"";
+			invalidate();
 		}
+
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) {
+		super.onDraw(canvas);
+		if (currentRect.isEmpty()) {
+
+		}else
+		canvas.drawText(currentText,currentRect.left,currentRect.top,mTextPaint);
+//		canvas.drawText(currentText,currentRect.left,currentRect.top,currentRect.right,currentRect.bottom,mTextPaint);
+		Log.e("************", String.format("---%s,---%s,---%s,---%s",currentRect.left,currentRect.top,currentRect.right,currentRect.bottom) );
 
 	}
 

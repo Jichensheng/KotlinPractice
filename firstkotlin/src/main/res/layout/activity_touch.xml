@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.heshun.firstkotlin.touchview.JLinearLayout
+        android:id="@+id/chiaroLinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#999999"
+        android:padding="80dp">
+<!--虽然tv宽高都是matchParent，但是父控件的padding 把tv的范围缩小了-->
+        <com.heshun.firstkotlin.touchview.JTextView
+            android:id="@+id/chiaroTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#00dddd"
+            android:gravity="center"
+            android:text="TextView"
+            android:textSize="32sp"/>
+    </com.heshun.firstkotlin.touchview.JLinearLayout>
+</LinearLayout>

@@ -18,20 +18,12 @@ import java.io.IOException
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-    override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.tv_love->{
-                val intent:Intent=Intent(this,MainActivity2::class.java)
-                startActivity(intent)
-            }
-            R.id.tv_learning->{
-                startActivity(Intent(this,RedBookActivity::class.java))
-            }
-        }
-    }
+
 
     private var mImageView: ImageView? = null
     private var tv_love:TextView?=null
+    private var tv_touch:TextView?=null
+    private var tv_anim:TextView?=null
     private var tv_learning:TextView?=null
     var fl_flow: FlowLayout?=null;
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +33,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
     fun initView(){
         tv_love=findViewById(R.id.tv_love) as TextView
+        tv_touch=findViewById(R.id.tv_touch) as TextView
+        tv_anim=findViewById(R.id.tv_anim) as TextView
+        tv_anim!!.setOnClickListener(this)
         tv_love!!.setOnClickListener(this)
+        tv_touch!!.setOnClickListener(this)
         tv_learning=findViewById(R.id.tv_learning) as TextView
         tv_learning!!.setOnClickListener(this)
         fl_flow=findViewById(R.id.fl_flow) as FlowLayout
@@ -81,5 +77,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
 
 
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+            R.id.tv_love->{
+                val intent:Intent=Intent(this,MainActivity2::class.java)
+                startActivity(intent)
+            }
+            R.id.tv_learning->{
+                startActivity(Intent(this,RedBookActivity::class.java))
+            }
+            R.id.tv_touch->{
+                startActivity(Intent(this,TouchActivity::class.java))
+            }
+            R.id.tv_anim->{
+                startActivity(Intent(this,AnimActivity::class.java))
+            }
+        }
     }
 }
