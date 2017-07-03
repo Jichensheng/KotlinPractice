@@ -63,6 +63,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_cover"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/boilerwater"/>
+        android:layout_centerHorizontal="true"/>
+    <com.heshun.canvasdemo.customerView.boiler.FireView
+        android:id="@+id/iv_fire"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/iv_water"
+        android:layout_marginLeft="-6dp"
+        android:layout_toRightOf="@+id/iv_potato"
+        android:gravity="center"/>
 </RelativeLayout>

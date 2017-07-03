@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<ImageView
+    android:id="@+id/iv_fire11"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/fire1"
+    />
+    <ImageView
+    android:id="@+id/iv_fire12"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/fire1"
+    android:layout_marginLeft="-15dp"
+    android:layout_toRightOf="@+id/iv_fire11"
+    />
+    <ImageView
+        android:id="@+id/iv_fire32"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fire3"
+        android:layout_marginLeft="-15dp"
+        android:layout_toRightOf="@+id/iv_fire31"
+        />
+    <ImageView
+    android:id="@+id/iv_fire31"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/fire3"
+    android:layout_marginLeft="-15dp"
+    android:layout_toRightOf="@+id/iv_fire2"
+    />
+    <ImageView
+        android:id="@+id/iv_fire2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fire2"
+        android:layout_marginLeft="-15dp"
+        android:layout_toRightOf="@+id/iv_fire12"
+        />
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.heshun.canvasdemo.customerView.boiler;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -33,7 +34,7 @@ public class WaterView extends View {
 	private boolean isWaterFull = false;//水满了
 	private float persent = 0;
 
-	List<Bubble> bubbles = initBubble(220, 580, 10);
+	List<Bubble> bubbles = initBubble(260, 640, 10);
 
 	public WaterView(Context context) {
 		this(context, null);
@@ -149,6 +150,5 @@ public class WaterView extends View {
 		}
 
 	}
-
 
 }

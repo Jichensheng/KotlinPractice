@@ -14,6 +14,11 @@
 <!--    <com.heshun.canvasdemo.customerView.boiler.WaterView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>-->
+    <com.heshun.canvasdemo.customerView.boiler.FireView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </com.heshun.canvasdemo.customerView.boiler.FireView>
     <com.heshun.canvasdemo.customerView.boiler.PathView android:layout_width="wrap_content"
                                                         android:layout_height="wrap_content"/>
 </LinearLayout>

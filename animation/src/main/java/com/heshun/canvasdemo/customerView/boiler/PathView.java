@@ -28,10 +28,13 @@ public class PathView extends View {
 
 	public PathView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		path = new Path();
-		path.moveTo(100, 100);
-		path.quadTo(130, 100, 200, 500);
-		path.lineTo(200, 200);
+		path = AnimatorUtils.makeBezierJumpPath(400,100,100,500);
+//		path.moveTo(100, 100);
+//		path.quadTo(400, 0, 400, 500);
+//		path.lineTo(400, 200);
+//		path.lineTo(400, 500);
+//		path.lineTo(400, 300);
+//		path.lineTo(400, 500);
 		pathPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		pathPaint.setStyle(Paint.Style.STROKE);
 		pathPaint.setStrokeWidth(2);
@@ -43,8 +46,8 @@ public class PathView extends View {
 			public void run() {
 				while (true) {
 					try {
-						Thread.sleep(10);
-						persent += 0.01;
+						Thread.sleep(1000);
+						persent += 0.03;
 						postInvalidate();
 					} catch (InterruptedException e) {
 						e.printStackTrace();
