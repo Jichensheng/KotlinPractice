@@ -13,7 +13,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 	private ViewPager viewPager;
-	private View v1, v2, v3, v4;
+	private View v1, v2, v3, v4,v5;
 	private List<View> viewList;
 
 	//private IndicatorView indicatorView;
@@ -33,12 +33,14 @@ public class MainActivity extends Activity {
 		v2 = inflater.inflate(R.layout.layout_static_fragment_use, null);
 		v3 = inflater.inflate(R.layout.layout_fish, null);
 		v4 = inflater.inflate(R.layout.layout_fruits_father, null);
+		v5 = inflater.inflate(R.layout.layout_boiler, null);
 
 		viewList = new ArrayList<>();
 		viewList.add(v1);
 		viewList.add(v2);
 		viewList.add(v3);
 		viewList.add(v4);
+		viewList.add(v5);
 
 		viewPager.setAdapter(new PgAdapter(viewList));
 
