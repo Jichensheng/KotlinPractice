@@ -1,7 +1,6 @@
 package com.heshun.canvasdemo.customerView.boiler;
 
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,10 +9,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.heshun.canvasdemo.R;
+import com.heshun.canvasdemo.customerView.interfacePack.OnWaterFullListener;
+import com.heshun.canvasdemo.customerView.tools.DimentionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +24,18 @@ import java.util.Random;
  * 2017/7/3 13:55
  */
 public class WaterView extends View {
-	private static final int MAX_RADIUS = 20;
+	private static final int MAX_RADIUS = 15;
 
 	private Bitmap bitWater;
-	private Canvas waterCanvas;
 	private Rect rectSrc;
 	private Paint mPaint;
 	private int mHeight = 0;
 	private boolean isWaterFull = false;//水满了
 	private float persent = 0;
 
-	List<Bubble> bubbles = initBubble(260, 640, 10);
+	private List<Bubble> bubbles = initBubble(DimentionUtils.dip2px(getContext(),70), DimentionUtils.dip2px(getContext(),190), 20);
+
+	private OnWaterFullListener waterFullListener;
 
 	public WaterView(Context context) {
 		this(context, null);
@@ -48,11 +49,10 @@ public class WaterView extends View {
 		super(context, attrs, defStyleAttr);
 
 		bitWater = BitmapFactory.decodeResource(getResources(), R.drawable.boilerwater).copy(Bitmap.Config.ARGB_8888, true);
-		waterCanvas = new Canvas(bitWater);
 		rectSrc = new Rect(0, 0, bitWater.getWidth(), bitWater.getHeight());
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		mPaint.setDither(true);
-		startAnimator();//测试
+//		startAnimator();//测试
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -60,13 +60,16 @@ public class WaterView extends View {
 					while (true) {
 						Thread.sleep(80);
 						persent += 0.1;
-						Log.e("----", "run: " + persent);
 					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
 		}).start();
+	}
+
+	public void setOnWaterFullListener(OnWaterFullListener waterFullListener) {
+		this.waterFullListener = waterFullListener;
 	}
 
 	@Override
@@ -92,9 +95,7 @@ public class WaterView extends View {
 
 	public void startAnimator() {
 		ObjectAnimator animator = ObjectAnimator.ofFloat(this, "height", 0f, 1f);
-//		animator.setRepeatCount(ValueAnimator.INFINITE);
-//		animator.setRepeatMode(ValueAnimator.RESTART);
-		animator.setDuration(10000).start();
+		animator.setDuration(1500).start();
 	}
 
 	/**
@@ -105,6 +106,9 @@ public class WaterView extends View {
 	private void setHeight(float persent) {
 		mHeight = (int) (bitWater.getHeight() * (1 - persent));
 		if (persent > 0.99) {
+			if (!isWaterFull) {//第一次水满的时候通知
+				waterFullListener.waterFull();
+			}
 			isWaterFull = true;
 		}
 		invalidate();
@@ -130,7 +134,7 @@ public class WaterView extends View {
 				int x = bubble.getX();
 				float offset = bubble.getOffset();
 				float progress = (float) (((int) ((persent + offset) * 100)) % 100) / 100;
-				int y = bitWater.getHeight()  - (int) (bitWater.getHeight() * progress)+MAX_RADIUS;
+				int y = bitWater.getHeight() - (int) (bitWater.getHeight() * progress) + MAX_RADIUS;
 				int radius = (int) (MAX_RADIUS * progress);
 				canvas.drawCircle(x, y, radius, mPaint);
 			}
@@ -142,7 +146,7 @@ public class WaterView extends View {
 				int x = bubble.getX();
 				float offset = bubble.getOffset();
 				float progress = (float) (((int) ((persent + offset) * 100)) % 100) / 100;
-				int y = bitWater.getHeight()  - (int) ((bitWater.getHeight()) * progress)-MAX_RADIUS;
+				int y = bitWater.getHeight() - (int) ((bitWater.getHeight()) * progress) - MAX_RADIUS;
 				int radius = (int) (MAX_RADIUS * progress);
 				canvas.drawCircle(x, y, radius, mPaint);
 			}

@@ -1,4 +1,4 @@
-package com.heshun.canvasdemo.customerView.boiler;
+package com.heshun.canvasdemo.customerView.tools;
 
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -30,9 +30,11 @@ public class AnimatorUtils {
         Path path = new Path();
         path.moveTo(sX, sY);
         path.quadTo(eX, sY-sY*0.3f, eX, eY);
-        path.lineTo(eX, eY*0.4f);
+        path.lineTo(eX, eY*0.8f);
         path.lineTo(eX, eY);
-        path.lineTo(eX, eY*0.6f);
+        path.lineTo(eX, eY*0.9f);
+        path.lineTo(eX, eY);
+        path.lineTo(eX, eY*0.95f);
         path.lineTo(eX, eY);
         return path;
     }

@@ -36,11 +36,11 @@ public class MainActivity extends Activity {
 		v5 = inflater.inflate(R.layout.layout_boiler, null);
 
 		viewList = new ArrayList<>();
+		viewList.add(v5);
 		viewList.add(v1);
 		viewList.add(v2);
 		viewList.add(v3);
 		viewList.add(v4);
-		viewList.add(v5);
 
 		viewPager.setAdapter(new PgAdapter(viewList));
 

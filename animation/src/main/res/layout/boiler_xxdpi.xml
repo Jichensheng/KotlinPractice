@@ -20,15 +20,24 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/boilerbody"/>
 
+
     <ImageView
-        android:id="@+id/iv_carrot"
+        android:id="@+id/iv_chicken"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/iv_water"
         android:layout_centerHorizontal="true"
-        android:paddingLeft="50dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/boilercarrot"/>
+        android:src="@drawable/boilerchicken"/>
+    <ImageView
+    android:id="@+id/iv_carrot"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignBottom="@+id/iv_water"
+    android:layout_centerHorizontal="true"
+    android:paddingLeft="50dp"
+    android:layout_marginBottom="5dp"
+    android:src="@drawable/boilercarrot"/>
     <ImageView
         android:id="@+id/iv_peas1"
         android:layout_width="wrap_content"
@@ -38,6 +47,7 @@
         android:layout_marginBottom="5dp"
         android:paddingLeft="40dp"
         android:src="@drawable/boilerpeas1"/>
+
 
 
     <ImageView
@@ -59,6 +69,7 @@
         android:src="@drawable/boilerpotato"/>
 
     <com.heshun.canvasdemo.customerView.boiler.WaterView
+        android:layout_marginTop="15dp"
         android:id="@+id/iv_water"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,6 +81,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/iv_water"
         android:layout_marginLeft="-6dp"
+        android:layout_marginTop="-6dp"
         android:layout_toRightOf="@+id/iv_potato"
         android:gravity="center"/>
 </RelativeLayout>

@@ -8,6 +8,8 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.heshun.canvasdemo.customerView.tools.AnimatorUtils;
+
 /**
  * author：Jics
  * 2017/7/3 17:55

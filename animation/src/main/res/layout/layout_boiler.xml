@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:background="#e1e1e1"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 <com.heshun.canvasdemo.customerView.boiler.BoilerView
@@ -14,11 +13,14 @@
 <!--    <com.heshun.canvasdemo.customerView.boiler.WaterView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>-->
-    <com.heshun.canvasdemo.customerView.boiler.FireView
+
+<!--    <com.heshun.canvasdemo.customerView.boiler.FireView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </com.heshun.canvasdemo.customerView.boiler.FireView>
-    <com.heshun.canvasdemo.customerView.boiler.PathView android:layout_width="wrap_content"
-                                                        android:layout_height="wrap_content"/>
+    </com.heshun.canvasdemo.customerView.boiler.FireView>-->
+
+<!--    <com.heshun.canvasdemo.customerView.boiler.PathView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>-->
 </LinearLayout>
