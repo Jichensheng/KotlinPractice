@@ -7,6 +7,9 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
+
+import com.heshun.canvasdemo.customerView.boiler.BoilerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,21 @@ public class MainActivity extends Activity {
 		v3 = inflater.inflate(R.layout.layout_fish, null);
 		v4 = inflater.inflate(R.layout.layout_fruits_father, null);
 		v5 = inflater.inflate(R.layout.layout_boiler, null);
+
+		final BoilerView boilerView= (BoilerView) v5.findViewById(R.id.bv_boiler_view);
+		Button btn= (Button) v5.findViewById(R.id.btn_anim);
+		btn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				if (v instanceof Button) {
+					if (((Button) v).getText()=="STOP") {
+						((Button) v).setText("START");
+					}else {
+						((Button) v).setText("STOP");
+					}
+				}
+			}
+		});
 
 		viewList = new ArrayList<>();
 		viewList.add(v5);

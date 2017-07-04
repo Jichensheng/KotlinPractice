@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Random;
 
 /**
+ * 动画控制部分是水是否满了、进度生成线程、以及属性动画
  * author：Jics
  * 2017/7/3 13:55
  */
@@ -30,7 +31,9 @@ public class WaterView extends View {
 	private Rect rectSrc;
 	private Paint mPaint;
 	private int mHeight = 0;
+
 	private boolean isWaterFull = false;//水满了
+	private ObjectAnimator animator;
 	private float persent = 0;
 
 	private List<Bubble> bubbles = initBubble(DimentionUtils.dip2px(getContext(),70), DimentionUtils.dip2px(getContext(),190), 20);
@@ -52,7 +55,6 @@ public class WaterView extends View {
 		rectSrc = new Rect(0, 0, bitWater.getWidth(), bitWater.getHeight());
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		mPaint.setDither(true);
-//		startAnimator();//测试
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -94,7 +96,7 @@ public class WaterView extends View {
 	}
 
 	public void startAnimator() {
-		ObjectAnimator animator = ObjectAnimator.ofFloat(this, "height", 0f, 1f);
+		animator = ObjectAnimator.ofFloat(this, "height", 0f, 1f);
 		animator.setDuration(1500).start();
 	}
 

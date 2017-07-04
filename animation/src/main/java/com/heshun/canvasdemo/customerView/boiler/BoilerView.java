@@ -29,7 +29,6 @@ import com.heshun.canvasdemo.customerView.tools.DimentionUtils;
  */
 
 public class BoilerView extends RelativeLayout implements OnWaterFullListener {
-	private static final int ANIMATOR_DURATION = 300;
 	private ImageView body;
 	private Paint circlePaint;
 	private AnimatorSet coverAnimatorSet;//锅盖抖动动画
@@ -46,19 +45,19 @@ public class BoilerView extends RelativeLayout implements OnWaterFullListener {
 	public BoilerView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
 		setWillNotDraw(false);
-		initView(context, attrs);
+		initView(context);
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-	private void initView(final Context context, AttributeSet attrs) {
+	private void initView(final Context context) {
 		circlePaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		circlePaint.setColor(Color.rgb(255, 206, 148));
 		circlePaint.setStyle(Paint.Style.FILL);
 		circlePaint.setDither(true);
 
 		View view = LayoutInflater.from(context).inflate(R.layout.boiler_xxdpi, this);
-		/*view.setScaleX(0.5f);
-		view.setScaleY(0.5f);*/
+		view.setScaleX(0.5f);
+		view.setScaleY(0.5f);
 		body = (ImageView) view.findViewById(R.id.iv_body);
 		final ImageView cover = (ImageView) view.findViewById(R.id.iv_cover);
 		final WaterView iv_water = (WaterView) view.findViewById(R.id.iv_water);
@@ -72,6 +71,7 @@ public class BoilerView extends RelativeLayout implements OnWaterFullListener {
 		final ImageView carrot = (ImageView) view.findViewById(R.id.iv_carrot);
 		final ImageView chicken = (ImageView) view.findViewById(R.id.iv_chicken);
 		hideView(cover,body,iv_water,fireView,peas1,peas2,potato,carrot,chicken);
+		//第一阶段动画
 		throwAnimatorSet = makeThrowAnimator(cover, body, peas1, peas2, potato, carrot,chicken);
 		throwAnimatorSet.addListener(new AnimatorListenerAdapter() {
 			@Override
@@ -79,9 +79,11 @@ public class BoilerView extends RelativeLayout implements OnWaterFullListener {
 				super.onAnimationStart(animation);
 				showView(body);
 			}
-
+			//第一阶段动画结束显示水和火动画
 			@Override
 			public void onAnimationEnd(Animator animation) {
+
+				//第二阶段动画
 				iv_water.startAnimator();
 				showView(iv_water,fireView);
 			}
@@ -240,7 +242,7 @@ public class BoilerView extends RelativeLayout implements OnWaterFullListener {
 
 	/**
 	 * 锅盖抖动动画集合
-	 *
+	 *周期循环
 	 * @param cover
 	 * @return
 	 */

@@ -1,6 +1,8 @@
 package com.heshun.canvasdemo.customerView.fish;
 
 import android.animation.TypeEvaluator;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.PointF;
 
 public class BezierEvaluator implements TypeEvaluator<PointF> {
@@ -8,11 +10,15 @@ public class BezierEvaluator implements TypeEvaluator<PointF> {
 	private PointF pointF1;
 	private PointF pointF2;
 	private FishView fishView;
+	private PathMeasure measure;
+	private Path path;
 
 	public BezierEvaluator(PointF pointF1, PointF pointF2, FishView fishView) {
 		this.pointF1 = pointF1;
 		this.pointF2 = pointF2;
 		this.fishView = fishView;
+		measure = new PathMeasure();
+		path = new Path();
 	}
 
 	/**
@@ -20,7 +26,7 @@ public class BezierEvaluator implements TypeEvaluator<PointF> {
 	 *
 	 * @param time
 	 * @param startValue ofObject的第二个参数
-	 * @param endValue ofObject的第三个参数
+	 * @param endValue   ofObject的第三个参数
 	 * @return
 	 */
 	@Override
@@ -29,6 +35,7 @@ public class BezierEvaluator implements TypeEvaluator<PointF> {
 		float slopeX;
 		float slopeY;
 		float angle;
+		float[] angles = new float[2];
 		PointF point = new PointF();// 结果
 
 		point.x = timeLeft * timeLeft * timeLeft * (startValue.x) + 3
@@ -39,29 +46,19 @@ public class BezierEvaluator implements TypeEvaluator<PointF> {
 				* timeLeft * timeLeft * time * (pointF1.y) + 3 * timeLeft
 				* time * time * (pointF2.y) + time * time * time * (endValue.y);
 
-		//鱼儿身体角度 求导
-		slopeX = (-3 * startValue.x * timeLeft * timeLeft) +
-				(3 * pointF1.x * timeLeft * timeLeft - 6 * pointF1.x * time * timeLeft) +
-				(6 * pointF2.x * time * timeLeft - 3 * pointF2.x * time * time) +
-				(3 * endValue.x * time * time);
-		slopeY = (-3 * startValue.y * timeLeft * timeLeft) +
-				(3 * pointF1.y * timeLeft * timeLeft - 6 * pointF1.y * time * timeLeft) +
-				(6 * pointF2.y * time * timeLeft - 3 * pointF2.y * time * time) +
-				(3 * endValue.y * time * time);
-		if (slopeX * slopeY > 0) {
-			if (slopeX > 0) {
-				angle = 180 + (float) Math.toDegrees(Math.abs(Math.atan(slopeY / slopeX)));
-			} else {
-				angle = (float) Math.toDegrees(Math.abs(Math.atan(slopeY / slopeX)));
-			}
-		} else {
-			if (slopeX > 0) {
-				angle = 180 - (float) Math.toDegrees(Math.abs(Math.atan(slopeY / slopeX)));
-			} else {
-				angle = -(float) Math.toDegrees(Math.abs(Math.atan(slopeY / slopeX)));
-			}
-		}
-		fishView.setFatherAngle(angle);
+		path.moveTo(startValue.x, startValue.y);
+		path.cubicTo(pointF1.x, pointF1.y, pointF2.x, pointF2.y, endValue.x, endValue.y);
+		measure.setPath(path, false);
+		if (time > 0.98 || time < 0.02) {
+			if (time > 0.98) {
+				measure.getPosTan(measure.getLength() * 0.98f, new float[2], angles);
+			} else
+				measure.getPosTan(measure.getLength() * 0.02f, new float[2], angles);
+		} else
+			measure.getPosTan(measure.getLength() * time, new float[2], angles);
+
+		angle = (float) (Math.atan2(angles[1], angles[0]) * 180.0 / Math.PI);
+		fishView.setFatherAngle(180 + angle);
 
 		return point;
 	}

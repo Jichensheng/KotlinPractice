@@ -176,17 +176,17 @@ public class FishLayout extends RelativeLayout implements FoodView.OnFoodClickLi
 				float newAngle = AnimaUtils.caculatAngle(new PointF(viewStartPoint.x - fishView.TOTAL_LENGTH, viewStartPoint.y - fishView.TOTAL_LENGTH), endPoint);
 				float totalAngel = newAngle + fatherAngle;
 				if (totalAngel >= 180 && totalAngel < 270) {
-					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[0], fatherAngle, bodyLength);
+					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[0], fatherAngle, bodyLength*2);
 					Log.e("*********", "run: " + "左下");
 				} else if (totalAngel >= 270 && totalAngel < 360) {
-					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[1], fatherAngle, bodyLength);
+					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[1], fatherAngle, bodyLength*2);
 					Log.e("*********", "run: " + "左");
 				} else if (totalAngel >= 90 && totalAngel < 180) {
 					Log.e("*********", "run: " + "右下");
-					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[2], fatherAngle, bodyLength);
+					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[2], fatherAngle, bodyLength*2);
 				} else {
 					Log.e("*********", "run: " + "右");
-					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[3], fatherAngle, bodyLength);
+					contralPoint = AnimaUtils.getBezierContralPoint(viewStartPoint, endPoint, lineTypes[3], fatherAngle, bodyLength*2);
 				}
 
 				resultList = new ArrayList<>();

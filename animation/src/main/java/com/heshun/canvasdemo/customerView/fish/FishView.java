@@ -24,7 +24,7 @@ public class FishView extends View {
     public int mScreenHeight;
     private Context mContext;
 
-    private static final float HEAD_RADIUS = 100;
+    private static final float HEAD_RADIUS = 25;
     protected static final float BODY_LENGHT = HEAD_RADIUS * 3.2f;
     private static final int HEAD_ALPHA = 230;
     private static final int BODY_ALPHA = 220;
