@@ -10,7 +10,9 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/animation" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/cardregion" />
             <option value="$PROJECT_DIR$/firstkotlin" />
+            <option value="$PROJECT_DIR$/ocr_ui" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

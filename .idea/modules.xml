@@ -5,7 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/KotlinPractice.iml" filepath="$PROJECT_DIR$/KotlinPractice.iml" />
       <module fileurl="file://$PROJECT_DIR$/animation/animation.iml" filepath="$PROJECT_DIR$/animation/animation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cardregion/cardregion.iml" filepath="$PROJECT_DIR$/cardregion/cardregion.iml" />
       <module fileurl="file://$PROJECT_DIR$/firstkotlin/firstkotlin.iml" filepath="$PROJECT_DIR$/firstkotlin/firstkotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ocr_ui/ocr_ui.iml" filepath="$PROJECT_DIR$/ocr_ui/ocr_ui.iml" />
     </modules>
   </component>
 </project>

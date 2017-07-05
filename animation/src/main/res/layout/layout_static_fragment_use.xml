@@ -3,9 +3,14 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
+    <com.heshun.canvasdemo.customerView.drawable.DrawableView
+
+        android:layout_width="500px"
+        android:layout_height="500px"/>
     <fragment
         android:id="@+id/fragment_1"
         android:name="com.heshun.canvasdemo.FragmentIconView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 </LinearLayout>
