@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
 
+        <!--grantUriPermissions表示授予 URI 临时访问权限-->
         <provider
             android:authorities="com.heshun.cardregion.fileprovider"
             android:name="android.support.v4.content.FileProvider"

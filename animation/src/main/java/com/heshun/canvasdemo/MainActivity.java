@@ -8,15 +8,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.heshun.canvasdemo.customerView.boiler.BoilerView;
+import com.heshun.canvasdemo.customerView.volume.VolumeSliderView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends Activity {
 	private ViewPager viewPager;
-	private View v1, v2, v3, v4,v5;
+	private View v1, v2, v3, v4,v5,v6;
 	private List<View> viewList;
 
 	//private IndicatorView indicatorView;
@@ -37,6 +39,7 @@ public class MainActivity extends Activity {
 		v3 = inflater.inflate(R.layout.layout_fish, null);
 		v4 = inflater.inflate(R.layout.layout_fruits_father, null);
 		v5 = inflater.inflate(R.layout.layout_boiler, null);
+		v6 = inflater.inflate(R.layout.layout_laba,null);
 
 		final BoilerView boilerView= (BoilerView) v5.findViewById(R.id.bv_boiler_view);
 		Button btn= (Button) v5.findViewById(R.id.btn_anim);
@@ -53,8 +56,21 @@ public class MainActivity extends Activity {
 			}
 		});
 
+		VolumeSliderView mSliderView;
+		final TextView mTextView;
+		mSliderView = (VolumeSliderView) v6.findViewById(R.id.sliderView);
+		mTextView = (TextView) v6.findViewById(R.id.text);
+		mSliderView.setOnVolumeSlideListener(new VolumeSliderView.OnVolumeSlideListener() {
+			@Override
+			public void result(int volume) {
+				mTextView.setText("音量: " + volume);
+			}
+		});
+
+
 		viewList = new ArrayList<>();
 		viewList.add(v5);
+		viewList.add(v6);
 		viewList.add(v1);
 		viewList.add(v2);
 		viewList.add(v3);
