@@ -7,8 +7,10 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.LinearInterpolator;
 
 /**
  * author：Jics
@@ -23,7 +25,7 @@ public class Wave extends View {
 	private int mHeight = 500;
 	private Path path;
 	private float currentPersent;
-private int currentX=-200;
+
 	public Wave(Context context) {
 		this(context, null);
 	}
@@ -38,16 +40,19 @@ private int currentX=-200;
 		mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		mPaint.setStyle(Paint.Style.FILL);
 		mPaint.setColor(Color.rgb(41, 163, 254));
+		mPaint.setDither(true);
 		textPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		textPaint.setColor(Color.WHITE);
-		textPaint.setTextSize(80);
+		textPaint.setTextSize(100);
+		textPaint.setTypeface(Typeface.DEFAULT_BOLD);
 
 		path = new Path();
 
 		mBitmap = Bitmap.createBitmap(300, 300, Bitmap.Config.ARGB_8888); //生成一个bitmap
 		mCanvas = new Canvas(mBitmap);//讲bitmp放在我们自己的画布上，实际上mCanvas.draw的时候 改变的是这个bit
 		ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
-		animator.setDuration(1000);
+		animator.setDuration(700);
+		animator.setInterpolator(new LinearInterpolator());
 		animator.setRepeatCount(ValueAnimator.INFINITE);
 		animator.setRepeatMode(ValueAnimator.RESTART);
 		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -64,7 +69,7 @@ private int currentX=-200;
 	@Override
 	protected void onDraw(Canvas canvas) {
 		textPaint.setColor(Color.rgb(41, 163, 254));
-		canvas.drawText("季", 60, 130, textPaint);
+		canvas.drawText("贴", 50, 140, textPaint);
 		textPaint.setColor(Color.WHITE);
 		//裁剪成圆形
 		Path o = new Path();
@@ -78,7 +83,7 @@ private int currentX=-200;
 		//裁剪文字
 		mCanvas.save(Canvas.CLIP_SAVE_FLAG);
 		mCanvas.clipPath(path);
-		mCanvas.drawText("季", 60, 130, textPaint);
+		mCanvas.drawText("贴", 50, 140, textPaint);
 		mCanvas.restore();
 
 		canvas.drawBitmap(mBitmap, 0, 0, mPaint);
@@ -101,16 +106,17 @@ private int currentX=-200;
 	}
 	private Path getActionPath(float persent) {
 		Path path = new Path();
-		currentX = (int) (-200+ persent * 200);
-		currentX = currentX == -1 ? -200 : currentX;
-		path.moveTo(currentX, 100);
-		System.out.println(currentX);
+		int x = -200;
+		x += persent * 200;
+		x = x == -1 ? 0 : x;
+		path.moveTo(x, 100);
+		System.out.println(x);
 		path.rQuadTo(50, 30, 100, 0);
 		path.rQuadTo(50, -30, 100, 0);
 		path.rQuadTo(50, 30, 100, 0);
 		path.rQuadTo(50, -30, 100, 0);
-		path.lineTo(currentX+400,200);
-		path.lineTo(currentX,200);
+		path.lineTo(x+400,200);
+		path.lineTo(x,200);
 		path.close();
 		return path;
 	}
