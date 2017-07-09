@@ -20,15 +20,19 @@
         android:textColor="#fff"
         android:background="@drawable/radius_btn"
     />
-<!--    <com.heshun.canvasdemo.customerView.boiler.WaterView
+    <com.heshun.canvasdemo.customerView.boiler.WaterView
+        android:id="@+id/water_test"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>-->
+        android:layout_height="wrap_content"/>
 
-<!--    <com.heshun.canvasdemo.customerView.boiler.FireView
+   <com.heshun.canvasdemo.customerView.boiler.FireView
+       android:id="@+id/fire"
+       android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
-    </com.heshun.canvasdemo.customerView.boiler.FireView>-->
+    </com.heshun.canvasdemo.customerView.boiler.FireView>
 
 <!--    <com.heshun.canvasdemo.customerView.boiler.PathView
         android:layout_width="wrap_content"

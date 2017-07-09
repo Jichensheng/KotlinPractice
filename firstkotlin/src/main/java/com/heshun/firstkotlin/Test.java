@@ -9,7 +9,14 @@ import java.util.List;
  */
 public class Test {
 	public static void main(String[] args) {
-		printSwitch();
+
+            int y0=100;
+            int y1=500;
+            float bounce=0.0f;
+            for (float i = 0; i <= 1; i+=0.01) {
+                System.out.println((i*y1-y0)*(i*y1-y0)/400);
+            }
+	/*	printSwitch();
 
 
 		Test test = new Test();
@@ -29,7 +36,7 @@ public class Test {
 			r = childView.getWidth();
 			System.out.println(childView.setLtrb(l,t,r,b)
 										.toString());
-		}
+		}*/
 	}
 
 	public static void printSwitch(){
