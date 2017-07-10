@@ -63,11 +63,11 @@ public class DrawableView extends ImageView {
         }
     }
 
-    private void startAnimation() {
+    public  void startAnimation() {
         mDrawable.start();
     }
 
-    private void stopAnimation() {
+    public  void stopAnimation() {
         mDrawable.stop();
     }
 }

@@ -158,7 +158,7 @@ public class FishView extends View {
         canvas.saveLayerAlpha(0, 0, (int) ((TOTAL_LENGTH + BODY_LENGHT / 2) * 2 + 0.5), (int) ((TOTAL_LENGTH + BODY_LENGHT / 2) * 2 + 0.5), 240, Canvas.ALL_SAVE_FLAG);
         makeBody(canvas, HEAD_RADIUS);
         mPath.reset();
-        mPaint.setColor(Color.argb(HEAD_ALPHA, 244, 92, 71));
+//        mPaint.setColor(Color.argb(HEAD_ALPHA, 244, 92, 71));
         mPaint.setColor(Color.argb(OTHER_ALPHA, 244, 92, 71));
     }
 

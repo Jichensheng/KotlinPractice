@@ -4,13 +4,23 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
     <com.heshun.canvasdemo.customerView.drawable.DrawableView
+        android:id="@+id/dv_readBall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <ImageView
+        android:background="#f1a2a2"
+        android:id="@+id/iv_dont"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
 
-        android:layout_width="500px"
-        android:layout_height="500px"/>
+    />
+
+
     <fragment
         android:id="@+id/fragment_1"
         android:name="com.heshun.canvasdemo.FragmentIconView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+
 
 </LinearLayout>

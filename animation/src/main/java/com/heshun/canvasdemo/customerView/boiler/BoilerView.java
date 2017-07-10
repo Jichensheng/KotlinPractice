@@ -57,8 +57,8 @@ public class BoilerView extends RelativeLayout implements OnWaterFullListener {
 		circlePaint.setDither(true);
 
 		View view = LayoutInflater.from(context).inflate(R.layout.boiler_xxdpi, this);
-		view.setScaleX(0.5f);
-		view.setScaleY(0.5f);
+		view.setScaleX(0.7f);
+		view.setScaleY(0.7f);
 		body = (ImageView) view.findViewById(R.id.iv_body);
 		final ImageView cover = (ImageView) view.findViewById(R.id.iv_cover);
 		final WaterView iv_water = (WaterView) view.findViewById(R.id.iv_water);

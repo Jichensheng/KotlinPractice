@@ -2,16 +2,20 @@ package com.heshun.canvasdemo;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.heshun.canvasdemo.customerView.boiler.BoilerView;
 import com.heshun.canvasdemo.customerView.volume.VolumeSliderView;
+import com.heshun.canvasdemo.customerView.wave.WaveDrawable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +24,9 @@ public class MainActivity extends Activity {
 	private ViewPager viewPager;
 	private View v1, v2, v3, v4,v5,v6;
 	private List<View> viewList;
-
+	boolean ani=true;
 	//private IndicatorView indicatorView;
+	@RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,6 +45,37 @@ public class MainActivity extends Activity {
 		v4 = inflater.inflate(R.layout.layout_fruits_father, null);
 		v5 = inflater.inflate(R.layout.layout_boiler, null);
 		v6 = inflater.inflate(R.layout.layout_laba,null);
+
+		ImageView ivdongt= (ImageView) v2.findViewById(R.id.iv_dont);
+		final WaveDrawable drawable1=new WaveDrawable(this);
+		v5.setBackground(drawable1);
+		ivdongt.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				switch (v.getId()) {
+					case R.id.iv_dont:
+						if (!ani) {
+							drawable1.start();
+							ani=true;
+						}else {
+							drawable1.stop();
+							ani=false;
+						}
+						break;
+				}
+			}
+		});
+		ivdongt.setImageDrawable(drawable1);
+
+
+
+
+
+
+
+
+
+
 
 		final BoilerView boilerView= (BoilerView) v5.findViewById(R.id.bv_boiler_view);
 		Button btn= (Button) v5.findViewById(R.id.btn_anim);
