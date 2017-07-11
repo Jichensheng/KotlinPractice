@@ -24,7 +24,7 @@ import java.util.Random;
 
 public class FishDrawable extends Drawable {
 	private static final String TAG = "Jcs_Fishsss";
-	private static final float HEAD_RADIUS = 25;
+	private static final float HEAD_RADIUS = 70;
 	protected static final float BODY_LENGHT = HEAD_RADIUS * 3.2f; //第一节身体长度
 	private static final int BODY_ALPHA = 220;
 	private static final int OTHER_ALPHA = 160;
@@ -38,7 +38,8 @@ public class FishDrawable extends Drawable {
 	private Context mContext;
 	//控制区域
 	private int currentPercent = 0;//全局控制标志
-	private float mainAngle = new Random().nextFloat() * 360;//角度表示的角
+//	private float mainAngle = new Random().nextFloat() * 360;//角度表示的角
+	private float mainAngle =0;//角度表示的角
 	protected ObjectAnimator finsAnimator;
 	private float waveFrequence = 1;
 	//鱼头点
@@ -148,7 +149,6 @@ public class FishDrawable extends Drawable {
 	public void draw(Canvas canvas) {
 		//生成一个半透明图层，否则与背景白色形成干扰,尺寸必须与view的大小一致否则鱼显示不全
 		canvas.saveLayerAlpha(0, 0, canvas.getWidth(), canvas.getHeight(), 240, Canvas.ALL_SAVE_FLAG);
-//        canvas.saveLayerAlpha(0, 0, (int) ((TOTAL_LENGTH + BODY_LENGHT / 2) * 2 + 0.5), (int) ((TOTAL_LENGTH + BODY_LENGHT / 2) * 2 + 0.5), 240, Canvas.ALL_SAVE_FLAG);
 		makeBody(canvas, HEAD_RADIUS);
 		canvas.restore();
 		mPath.reset();
@@ -168,31 +168,31 @@ public class FishDrawable extends Drawable {
 	private void makeBody(Canvas canvas, float headRadius) {
 		//现有角度=原始角度+ sin（域值[-1，1]）*可摆动的角度   sin作用是控制周期摆动
 		float angle = mainAngle + (float) Math.sin(Math.toRadians(currentPercent * 1.2 * waveFrequence)) * 2;//中心轴线和X轴顺时针方向夹角
-		headPoint = calculatPoint(middlePoint, BODY_LENGHT / 2, 180 + angle);
+		headPoint = calculatPoint(middlePoint, BODY_LENGHT / 2,angle);
 		Log.e(TAG, "makeBody: " + middlePoint.toString() + "   " + headPoint.toString());
 		//画头
 		canvas.drawCircle(headPoint.x, headPoint.y, HEAD_RADIUS, mPaint);
 		//右鳍 起点
-		PointF pointFinsRight = calculatPoint(headPoint, headRadius * 0.9f, angle + 70);
+		PointF pointFinsRight = calculatPoint(headPoint, headRadius * 0.9f, angle -110);
 		makeFins(canvas, pointFinsRight, FINS_RIGHT, angle);
 		//左鳍 起点
-		PointF pointFinsLeft = calculatPoint(headPoint, headRadius * 0.9f, angle - 70);
+		PointF pointFinsLeft = calculatPoint(headPoint, headRadius * 0.9f, angle +110);
 		makeFins(canvas, pointFinsLeft, FINS_LEFT, angle);
 
-		PointF endPoint = calculatPoint(headPoint, BODY_LENGHT, angle);
+		PointF endPoint = calculatPoint(headPoint, BODY_LENGHT, angle-180);
 		//躯干2
 		PointF mainPoint = new PointF(endPoint.x, endPoint.y);
 		makeSegments(canvas, mainPoint, headRadius * 0.7f, 0.6f, angle);
 
 		PointF point1, point2, point3, point4, contralLeft, contralRight;
 		//point1和4的初始角度决定发髻线的高低值越大越低
-		point1 = calculatPoint(headPoint, headRadius, 100 + angle);
-		point2 = calculatPoint(endPoint, headRadius * 0.7f, 90 + angle);
-		point3 = calculatPoint(endPoint, headRadius * 0.7f, angle - 90);
-		point4 = calculatPoint(headPoint, headRadius, angle - 100);
+		point1 = calculatPoint(headPoint, headRadius,  angle-80);
+		point2 = calculatPoint(endPoint, headRadius * 0.7f, angle-90);
+		point3 = calculatPoint(endPoint, headRadius * 0.7f, angle +90);
+		point4 = calculatPoint(headPoint, headRadius, angle +80);
 		//决定胖瘦
-		contralLeft = calculatPoint(headPoint, BODY_LENGHT * 0.56f, angle + 50);
-		contralRight = calculatPoint(headPoint, BODY_LENGHT * 0.56f, angle - 50);
+		contralLeft = calculatPoint(headPoint, BODY_LENGHT * 0.56f, angle -130);
+		contralRight = calculatPoint(headPoint, BODY_LENGHT * 0.56f, angle +130);
 		mPath.reset();
 		mPath.moveTo(point1.x, point1.y);
 		mPath.quadTo(contralLeft.x, contralLeft.y, point2.x, point2.y);
@@ -219,13 +219,13 @@ public class FishDrawable extends Drawable {
 		float angle = mainAngle + (float) Math.cos(Math.toRadians(currentPercent * 1.5 * waveFrequence)) * 15;//中心轴线和X轴顺时针方向夹角
 		//身长
 		float segementLenght = segmentRadius * (MP + 1);
-		PointF endPoint = calculatPoint(mainPoint, segementLenght, angle);
+		PointF endPoint = calculatPoint(mainPoint, segementLenght, angle-180);
 
 		PointF point1, point2, point3, point4;
-		point1 = calculatPoint(mainPoint, segmentRadius, 90 + angle);
-		point2 = calculatPoint(endPoint, segmentRadius * MP, 90 + angle);
-		point3 = calculatPoint(endPoint, segmentRadius * MP, angle - 90);
-		point4 = calculatPoint(mainPoint, segmentRadius, angle - 90);
+		point1 = calculatPoint(mainPoint, segmentRadius, angle-90);
+		point2 = calculatPoint(endPoint, segmentRadius * MP,angle-90);
+		point3 = calculatPoint(endPoint, segmentRadius * MP, angle +90);
+		point4 = calculatPoint(mainPoint, segmentRadius, angle+90);
 
 		canvas.drawCircle(mainPoint.x, mainPoint.y, segmentRadius, mPaint);
 		canvas.drawCircle(endPoint.x, endPoint.y, segmentRadius * MP, mPaint);
@@ -254,13 +254,13 @@ public class FishDrawable extends Drawable {
 		float angle = fatherAngle + (float) Math.sin(Math.toRadians(currentPercent * 1.5 * waveFrequence)) * 35;//中心轴线和X轴顺时针方向夹角
 		//身长
 		float segementLenght = segmentRadius * (MP + 2.7f);
-		PointF endPoint = calculatPoint(mainPoint, segementLenght, angle);
+		PointF endPoint = calculatPoint(mainPoint, segementLenght, angle-180);
 
 		PointF point1, point2, point3, point4;
-		point1 = calculatPoint(mainPoint, segmentRadius, 90 + angle);
-		point2 = calculatPoint(endPoint, segmentRadius * MP, 90 + angle);
-		point3 = calculatPoint(endPoint, segmentRadius * MP, angle - 90);
-		point4 = calculatPoint(mainPoint, segmentRadius, angle - 90);
+		point1 = calculatPoint(mainPoint, segmentRadius, angle -90 );
+		point2 = calculatPoint(endPoint, segmentRadius * MP,angle -90 );
+		point3 = calculatPoint(endPoint, segmentRadius * MP, angle +90);
+		point4 = calculatPoint(mainPoint, segmentRadius, angle +90);
 
 		makeTail(canvas, mainPoint, segementLenght, segmentRadius, angle);
 
@@ -282,12 +282,12 @@ public class FishDrawable extends Drawable {
 	 * @param type
 	 */
 	private void makeFins(Canvas canvas, PointF startPoint, int type, float fatherAngle) {
-		float contralAngle = 65;//鱼鳍三角控制角度
+		float contralAngle = 115;//鱼鳍三角控制角度
 		mPath.reset();
 		mPath.moveTo(startPoint.x, startPoint.y);
-		PointF endPoint = calculatPoint(startPoint, FINS_LENGTH, type == FINS_RIGHT ? fatherAngle - finsAngle : fatherAngle + finsAngle);
+		PointF endPoint = calculatPoint(startPoint, FINS_LENGTH, type == FINS_RIGHT ? fatherAngle - finsAngle-180 : fatherAngle + finsAngle+180);
 		PointF contralPoint = calculatPoint(startPoint, FINS_LENGTH * 1.8f, type == FINS_RIGHT ?
-				fatherAngle + contralAngle - finsAngle : fatherAngle - contralAngle + finsAngle);
+				fatherAngle - contralAngle - finsAngle : fatherAngle + contralAngle + finsAngle);
 		mPath.quadTo(contralPoint.x, contralPoint.y, endPoint.x, endPoint.y);
 		mPath.lineTo(startPoint.x, startPoint.y);
 		mPaint.setColor(Color.argb(FINS_ALPHA, 244, 92, 71));
@@ -306,13 +306,13 @@ public class FishDrawable extends Drawable {
 	 */
 	private void makeTail(Canvas canvas, PointF mainPoint, float length, float maxWidth, float angle) {
 		float newWidth = (float) Math.abs(Math.sin(Math.toRadians(currentPercent * 1.7 * waveFrequence)) * maxWidth + HEAD_RADIUS/5*3);
-		PointF endPoint = calculatPoint(mainPoint, length, angle);
-		PointF endPoint2 = calculatPoint(mainPoint, length - 10, angle);
+		PointF endPoint = calculatPoint(mainPoint, length, angle-180);
+		PointF endPoint2 = calculatPoint(mainPoint, length - 10, angle-180);
 		PointF point1, point2, point3, point4;
-		point1 = calculatPoint(endPoint, newWidth, 90 + angle);
-		point2 = calculatPoint(endPoint, newWidth, angle - 90);
-		point3 = calculatPoint(endPoint2, newWidth - 20, 90 + angle);
-		point4 = calculatPoint(endPoint2, newWidth - 20, angle - 90);
+		point1 = calculatPoint(endPoint, newWidth, angle-90);
+		point2 = calculatPoint(endPoint, newWidth, angle +90);
+		point3 = calculatPoint(endPoint2, newWidth - 20, angle-90);
+		point4 = calculatPoint(endPoint2, newWidth - 20, angle +90);
 		//内
 		mPath.reset();
 		mPath.moveTo(mainPoint.x, mainPoint.y);
@@ -344,12 +344,13 @@ public class FishDrawable extends Drawable {
 	 *	正逆负顺
 	 * @param startPoint
 	 * @param length
-	 * @param angle      顺时针角度
+	 * @param angle
 	 * @return
 	 */
 	private static PointF calculatPoint(PointF startPoint, float length, float angle) {
 		float deltaX = (float) Math.cos(Math.toRadians(angle)) * length;
-		float deltaY = (float) Math.sin(Math.toRadians(angle)) * length;
+        //符合Android坐标的y轴朝下的标准
+		float deltaY = (float) Math.sin(Math.toRadians(angle-180)) * length;
 		return new PointF(startPoint.x + deltaX, startPoint.y + deltaY);
 	}
 
