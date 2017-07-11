@@ -11,12 +11,12 @@
 
     <ImageView
         android:id="@+id/iv_dont"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:background="#f1a2a2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         />
 
     <ImageView
+        android:layout_margin="10dp"
         android:id="@+id/iv_fish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

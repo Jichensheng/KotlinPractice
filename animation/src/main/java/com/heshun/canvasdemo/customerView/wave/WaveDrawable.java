@@ -101,6 +101,12 @@ public class WaveDrawable extends Drawable implements Animatable {
 	}
 
 	@Override
+	protected void onBoundsChange(Rect bounds) {
+		super.onBoundsChange(bounds);
+		Log.e(TAG, "onBoundsChange: "+bounds.toString() );
+	}
+
+	@Override
 	public void draw(Canvas canvas) {
 		Log.e(TAG, "draw: "+canvas.getWidth()+"      "+canvas.getHeight() );
 		mWidth=canvas.getWidth();

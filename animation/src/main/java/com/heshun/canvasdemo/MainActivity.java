@@ -55,7 +55,6 @@ public class MainActivity extends Activity {
 		ImageView ivdongt= (ImageView) v2.findViewById(R.id.iv_dont);
 
 		final WaveDrawable drawable1=new WaveDrawable(this);
-		v5.setBackground(drawable1);
 		ivdongt.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
