@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.heshun.canvasdemo.customerView.boiler.BoilerView;
+import com.heshun.canvasdemo.customerView.fish.FishDrawable;
 import com.heshun.canvasdemo.customerView.volume.VolumeSliderView;
 import com.heshun.canvasdemo.customerView.wave.WaveDrawable;
 
@@ -46,7 +47,13 @@ public class MainActivity extends Activity {
 		v5 = inflater.inflate(R.layout.layout_boiler, null);
 		v6 = inflater.inflate(R.layout.layout_laba,null);
 
+		ImageView iv_fish= (ImageView) v2.findViewById(R.id.iv_fish);
+        FishDrawable fishDrawable=new FishDrawable(this);
+        iv_fish.setImageDrawable(fishDrawable);
+
+
 		ImageView ivdongt= (ImageView) v2.findViewById(R.id.iv_dont);
+
 		final WaveDrawable drawable1=new WaveDrawable(this);
 		v5.setBackground(drawable1);
 		ivdongt.setOnClickListener(new View.OnClickListener() {
