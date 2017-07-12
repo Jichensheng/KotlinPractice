@@ -13,7 +13,6 @@ import android.graphics.Path;
 import android.graphics.PixelFormat;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.animation.LinearInterpolator;
 
 import java.util.Random;
@@ -24,7 +23,7 @@ import java.util.Random;
 
 public class FishDrawable extends Drawable {
 	private static final String TAG = "Jcs_Fishsss";
-	private static final float HEAD_RADIUS = 70;
+	private static final float HEAD_RADIUS = 30;
 	protected static final float BODY_LENGHT = HEAD_RADIUS * 3.2f; //第一节身体长度
 	private static final int BODY_ALPHA = 220;
 	private static final int OTHER_ALPHA = 160;
@@ -38,8 +37,8 @@ public class FishDrawable extends Drawable {
 	private Context mContext;
 	//控制区域
 	private int currentPercent = 0;//全局控制标志
-//	private float mainAngle = new Random().nextFloat() * 360;//角度表示的角
-	private float mainAngle =0;//角度表示的角
+	private float mainAngle = new Random().nextFloat() * 360;//角度表示的角
+//	private float mainAngle =180;//角度表示的角
 	protected ObjectAnimator finsAnimator;
 	private float waveFrequence = 1;
 	//鱼头点
@@ -100,6 +99,10 @@ public class FishDrawable extends Drawable {
 		});
 		valueAnimator.start();
 
+	}
+
+	public PointF getHeadPoint() {
+		return headPoint;
 	}
 
 	/**
@@ -168,8 +171,8 @@ public class FishDrawable extends Drawable {
 	private void makeBody(Canvas canvas, float headRadius) {
 		//现有角度=原始角度+ sin（域值[-1，1]）*可摆动的角度   sin作用是控制周期摆动
 		float angle = mainAngle + (float) Math.sin(Math.toRadians(currentPercent * 1.2 * waveFrequence)) * 2;//中心轴线和X轴顺时针方向夹角
-		headPoint = calculatPoint(middlePoint, BODY_LENGHT / 2,angle);
-		Log.e(TAG, "makeBody: " + middlePoint.toString() + "   " + headPoint.toString());
+		headPoint = calculatPoint(middlePoint, BODY_LENGHT / 2,mainAngle);
+//		Log.e(TAG, "makeBody: " + middlePoint.toString() + "   " + headPoint.toString());
 		//画头
 		canvas.drawCircle(headPoint.x, headPoint.y, HEAD_RADIUS, mPaint);
 		//右鳍 起点

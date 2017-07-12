@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.heshun.canvasdemo.customerView.boiler.BoilerView;
 import com.heshun.canvasdemo.customerView.fish.FishDrawable;
+import com.heshun.canvasdemo.customerView.fish.TestBizer;
 import com.heshun.canvasdemo.customerView.volume.VolumeSliderView;
 import com.heshun.canvasdemo.customerView.wave.WaveDrawable;
 
@@ -23,7 +24,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 	private ViewPager viewPager;
-	private View v1, v2, v3, v4,v5,v6;
+	private View v1, v2, v3, v4,v5,v6,v7;
 	private List<View> viewList;
 	boolean ani=true;
 	//private IndicatorView indicatorView;
@@ -46,6 +47,7 @@ public class MainActivity extends Activity {
 		v4 = inflater.inflate(R.layout.layout_fruits_father, null);
 		v5 = inflater.inflate(R.layout.layout_boiler, null);
 		v6 = inflater.inflate(R.layout.layout_laba,null);
+		v7 = inflater.inflate(R.layout.layout_fish_drawable,null);
 
 		ImageView iv_fish= (ImageView) v2.findViewById(R.id.iv_fish);
         FishDrawable fishDrawable=new FishDrawable(this);
@@ -72,15 +74,6 @@ public class MainActivity extends Activity {
 			}
 		});
 		ivdongt.setImageDrawable(drawable1);
-
-
-
-
-
-
-
-
-
 
 
 		final BoilerView boilerView= (BoilerView) v5.findViewById(R.id.bv_boiler_view);
@@ -111,6 +104,8 @@ public class MainActivity extends Activity {
 
 
 		viewList = new ArrayList<>();
+		viewList.add(new TestBizer(this));
+		viewList.add(v7);
 		viewList.add(v5);
 		viewList.add(v6);
 		viewList.add(v1);

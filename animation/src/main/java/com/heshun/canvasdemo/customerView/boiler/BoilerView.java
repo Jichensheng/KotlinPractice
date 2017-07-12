@@ -46,7 +46,6 @@ public class BoilerView extends RelativeLayout implements OnWaterFullListener {
 		super(context, attrs, defStyleAttr);
 		setWillNotDraw(false);
 		initView(context);
-		System.out.println();
 	}
 
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
