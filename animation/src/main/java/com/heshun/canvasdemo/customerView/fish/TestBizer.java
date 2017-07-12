@@ -33,7 +33,7 @@ public class TestBizer extends View {
 
 	@Override
 	protected void onDraw(Canvas canvas) {
-		drawTr(canvas, new PointF(300, 400), new PointF(400, 200), new PointF(0, 700));//钝角
+		drawTr(canvas, new PointF(300, 400), new PointF(400, 200), new PointF(20, 700));//钝角
 		drawTr(canvas, new PointF(700, 400), new PointF(800, 200), new PointF(700, 350));//钝角
 		drawTr(canvas, new PointF(500, 400), new PointF(600, 200), new PointF(450, 900));//钝角
 		drawTr(canvas, new PointF(900, 800), new PointF(1000, 600), new PointF(800, 1000));//钝角
