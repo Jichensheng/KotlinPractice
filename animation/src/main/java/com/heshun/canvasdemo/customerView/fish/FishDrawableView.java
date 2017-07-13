@@ -41,17 +41,17 @@ public class FishDrawableView extends RelativeLayout {
 	private int alpha = 100;
 	private Canvas canvas;
 
-	private float x=0;
-	private float y=0;
-	private float radius=0;
+	private float x = 0;
+	private float y = 0;
+	private float radius = 0;
 
 
 	public FishDrawableView(Context context) {
-		this(context,null);
+		this(context, null);
 	}
 
 	public FishDrawableView(Context context, AttributeSet attrs) {
-		this(context, attrs,0);
+		this(context, attrs, 0);
 	}
 
 	public FishDrawableView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -62,7 +62,7 @@ public class FishDrawableView extends RelativeLayout {
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		setMeasuredDimension(mScreenWidth, mScreenHeight);
 	}
 
@@ -76,10 +76,10 @@ public class FishDrawableView extends RelativeLayout {
 		mPaint.setStrokeWidth(STROKE_WIDTH);
 
 
-		ivFish= new ImageView(context);
-		RelativeLayout.LayoutParams params=new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+		ivFish = new ImageView(context);
+		RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		ivFish.setLayoutParams(params);
-		fishDrawable=new FishDrawable(context);
+		fishDrawable = new FishDrawable(context);
 		ivFish.setImageDrawable(fishDrawable);
 
 		addView(ivFish);
@@ -88,46 +88,47 @@ public class FishDrawableView extends RelativeLayout {
 	@Override
 	protected void onDraw(Canvas canvas) {
 		if (this.canvas == null) {
-			this.canvas=canvas;
+			this.canvas = canvas;
 		}
 		//方便刷新透明度
 		mPaint.setARGB(alpha, 0, 125, 251);
 
-		canvas.drawCircle(x,y,radius,mPaint);
+		canvas.drawCircle(x, y, radius, mPaint);
 	}
 
 
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		x=event.getX();
-		y=event.getY();
-		ObjectAnimator animator=ObjectAnimator.ofFloat(this,"radius",0f,1f).setDuration(1000);
+		x = event.getX();
+		y = event.getY();
+		ObjectAnimator animator = ObjectAnimator.ofFloat(this, "radius", 0f, 1f).setDuration(1000);
 		animator.start();
-		makeTrail(new PointF(x,y));
+		makeTrail(new PointF(x, y));
 		return super.onTouchEvent(event);
 	}
 
 	/**
 	 * 鱼头是第一控点，中点和头与中点和点击点的夹角的一半是第二个控制点角度
+	 *
 	 * @param touch
 	 */
 	@RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 	private void makeTrail(PointF touch) {
 		Path path = new Path();
-		PointF fishMiddle=new PointF(ivFish.getX()+fishDrawable.getMiddlePoint().x, ivFish.getY()+fishDrawable.getMiddlePoint().y);
-		PointF fishHead=new PointF(ivFish.getX()+fishDrawable.getHeadPoint().x,ivFish.getY()+fishDrawable.getHeadPoint().y);
+		PointF fishMiddle = new PointF(ivFish.getX() + fishDrawable.getMiddlePoint().x, ivFish.getY() + fishDrawable.getMiddlePoint().y);
+		PointF fishHead = new PointF(ivFish.getX() + fishDrawable.getHeadPoint().x, ivFish.getY() + fishDrawable.getHeadPoint().y);
 		path.moveTo(ivFish.getX(), ivFish.getY());
 		final float angle = includedAngle(fishMiddle, fishHead, touch);
 		float delta = calcultatAngle(fishMiddle, fishHead);
 		PointF controlF = calculatPoint(fishMiddle, 224, angle / 2 + delta);
-		path.cubicTo(fishHead.x, fishHead.y, controlF.x, controlF.y, touch.x-fishDrawable.getHeadPoint().x, touch.y-fishDrawable.getHeadPoint().y);
+		path.cubicTo(fishHead.x, fishHead.y, controlF.x, controlF.y, touch.x - fishDrawable.getHeadPoint().x, touch.y - fishDrawable.getHeadPoint().y);
 
 		final float[] pos = new float[2];
 		final float[] tan = new float[2];
 		final PathMeasure pathMeasure = new PathMeasure(path, false);
 
-		ObjectAnimator animator =ObjectAnimator.ofFloat(ivFish,"x","y",path);
-		animator.setDuration(2*1000);
+		ObjectAnimator animator = ObjectAnimator.ofFloat(ivFish, "x", "y", path);
+		animator.setDuration(2 * 1000);
 		animator.setInterpolator(new AccelerateDecelerateInterpolator());
 		animator.addListener(new AnimatorListenerAdapter() {
 			@Override
@@ -149,10 +150,10 @@ public class FishDrawableView extends RelativeLayout {
 		animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 			@Override
 			public void onAnimationUpdate(ValueAnimator animation) {
-				float persent=animation.getAnimatedFraction();
+				float persent = animation.getAnimatedFraction();
 				pathMeasure.getPosTan(pathMeasure.getLength() * persent, pos, tan);
 				float angle = (float) (Math.atan2(tan[0], tan[1]) * 180.0 / Math.PI);
-				fishDrawable.setMainAngle(angle-90);
+				fishDrawable.setMainAngle(angle - 90);
 			}
 		});
 		animator.start();
@@ -161,14 +162,16 @@ public class FishDrawableView extends RelativeLayout {
 
 	/**
 	 * ObjectAnimators自动执行
+	 *
 	 * @param currentValue
 	 */
-	public void setRadius(float currentValue){
-		alpha= (int) (100*(1-currentValue)/2);
-		radius=DEFAULT_RADIUS*currentValue;
+	public void setRadius(float currentValue) {
+		alpha = (int) (100 * (1 - currentValue) / 2);
+		radius = DEFAULT_RADIUS * currentValue;
 		postInvalidate();
 
 	}
+
 	/**
 	 * 获取屏幕宽高
 	 */

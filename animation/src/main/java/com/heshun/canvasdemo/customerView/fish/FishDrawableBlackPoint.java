@@ -21,7 +21,7 @@ import java.util.Random;
  * Created by Jcs on 2017/7/10.
  */
 
-public class FishDrawable extends Drawable {
+public class FishDrawableBlackPoint extends Drawable {
 	private static final String TAG = "Jcs_Fishsss";
 	private static final float HEAD_RADIUS = 80;
 	protected static final float BODY_LENGHT = HEAD_RADIUS * 3.2f; //第一节身体长度
@@ -32,11 +32,12 @@ public class FishDrawable extends Drawable {
 	private static final int FINS_RIGHT = -1;
 	private static final float FINS_LENGTH = HEAD_RADIUS * 1.3f;
 	public static final float TOTAL_LENGTH = 6.79f * HEAD_RADIUS;
+	private Paint framePaint;
 
 	private Paint mPaint;
 	private Context mContext;
 	//控制区域
-	private int currentValue = 0;//全局控制标志
+	private int currentPercent = 0;//全局控制标志
 //	private float mainAngle = new Random().nextFloat() * 360;//角度表示的角
 	private float mainAngle =90;//角度表示的角
 	protected ObjectAnimator finsAnimator;
@@ -49,12 +50,16 @@ public class FishDrawable extends Drawable {
 	private Paint bodyPaint;
 	private Path mPath;
 
-	public FishDrawable(Context context) {
+	public FishDrawableBlackPoint(Context context) {
 		this.mContext = context;
 		init();
 	}
 
 	private void init() {
+		framePaint=new Paint(Paint.ANTI_ALIAS_FLAG);
+		framePaint.setStrokeWidth(5);
+		framePaint.setStyle(Paint.Style.STROKE);
+		framePaint.setColor(Color.BLACK);
 
 		//路径
 		mPath = new Path();
@@ -87,8 +92,8 @@ public class FishDrawable extends Drawable {
 		valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
 			@Override
 			public void onAnimationUpdate(ValueAnimator animation) {
-				currentValue = (int) (animation.getAnimatedValue());
-//				mainAngle = currentValue % 360;
+				currentPercent = (int) (animation.getAnimatedValue());
+//				mainAngle = currentPercent % 360;
 				invalidateSelf();
 			}
 		});
@@ -152,7 +157,6 @@ public class FishDrawable extends Drawable {
 
 	@Override
 	public void draw(Canvas canvas) {
-
 		//生成一个半透明图层，否则与背景白色形成干扰,尺寸必须与view的大小一致否则鱼显示不全
 		canvas.saveLayerAlpha(0, 0, canvas.getWidth(), canvas.getHeight(), 240, Canvas.ALL_SAVE_FLAG);
 		makeBody(canvas, HEAD_RADIUS);
@@ -174,8 +178,9 @@ public class FishDrawable extends Drawable {
 	private void makeBody(Canvas canvas, float headRadius) {
 		//sin参数为弧度值
 		//现有角度=原始角度+ sin（域值[-1，1]）*可摆动的角度   sin作用是控制周期摆动
-		float angle = mainAngle + (float) Math.sin(Math.toRadians(currentValue * 1.2 * waveFrequence)) * 2;//中心轴线加偏移量和X轴顺时针方向夹角
+		float angle = mainAngle + (float) Math.sin(Math.toRadians(currentPercent * 1.2 * waveFrequence)) * 2;//中心轴线和X轴顺时针方向夹角
 		headPoint = calculatPoint(middlePoint, BODY_LENGHT / 2,mainAngle);
+//		Log.e(TAG, "makeBody: " + middlePoint.toString() + "   " + headPoint.toString());
 		//画头
 		canvas.drawCircle(headPoint.x, headPoint.y, HEAD_RADIUS, mPaint);
 		//右鳍 起点
@@ -208,8 +213,25 @@ public class FishDrawable extends Drawable {
 		mPaint.setColor(Color.argb(BODY_ALPHA, 244, 92, 71));
 		//画最大的身子
 		canvas.drawPath(mPath, mPaint);
+		mPaint.setColor(Color.argb(OTHER_ALPHA, 244, 92, 71));
+		canvas.drawLine(headPoint.x,headPoint.y,mainPoint.x,mainPoint.y,framePaint);
+		canvas.drawLine(headPoint.x,headPoint.y,pointFinsRight.x,pointFinsRight.y,framePaint);
+		canvas.drawLine(headPoint.x,headPoint.y,pointFinsLeft.x,pointFinsLeft.y,framePaint);
+		drawPoint(headPoint,canvas);
+		drawPoint(middlePoint,canvas);
+		drawPoint(pointFinsRight,canvas);
+		drawPoint(contralLeft,canvas);
+		drawPoint(contralRight,canvas);
+		drawPoint(point1,canvas);
+		drawPoint(point2,canvas);
+		drawPoint(point3,canvas);
+		drawPoint(point4,canvas);
+		drawPoint(endPoint,canvas);
 	}
+	private void drawPoint(PointF pointF,Canvas canvas){
+		canvas.drawCircle(pointF.x,pointF.y,4,framePaint);
 
+	}
 	/**
 	 * 第二节节肢
 	 * 0.7R * 0.6 =1.12R
@@ -220,7 +242,7 @@ public class FishDrawable extends Drawable {
 	 * @param MP            梯形上边下边长度比
 	 */
 	private void makeSegments(Canvas canvas, PointF mainPoint, float segmentRadius, float MP, float fatherAngle) {
-		float angle = fatherAngle + (float) Math.cos(Math.toRadians(currentValue * 1.5 * waveFrequence)) * 15;//中心轴线和X轴顺时针方向夹角
+		float angle = fatherAngle + (float) Math.cos(Math.toRadians(currentPercent * 1.5 * waveFrequence)) * 15;//中心轴线和X轴顺时针方向夹角
 		//身长
 		float segementLenght = segmentRadius * (MP + 1);
 		PointF endPoint = calculatPoint(mainPoint, segementLenght, angle-180);
@@ -243,6 +265,12 @@ public class FishDrawable extends Drawable {
 		//躯干2
 		PointF mainPoint2 = new PointF(endPoint.x, endPoint.y);
 		makeSegmentsLong(canvas, mainPoint2, segmentRadius * 0.6f, 0.4f, angle);
+		canvas.drawLine(mainPoint.x,mainPoint.y,endPoint.x,endPoint.y,framePaint);
+		drawPoint(point1,canvas);
+		drawPoint(point2,canvas);
+		drawPoint(point3,canvas);
+		drawPoint(point4,canvas);
+		drawPoint(endPoint,canvas);
 	}
 
 	/**
@@ -255,7 +283,7 @@ public class FishDrawable extends Drawable {
 	 * @param MP            梯形上边下边长度比
 	 */
 	private void makeSegmentsLong(Canvas canvas, PointF mainPoint, float segmentRadius, float MP, float fatherAngle) {
-		float angle = fatherAngle + (float) Math.sin(Math.toRadians(currentValue * 1.5 * waveFrequence)) * 35;//中心轴线和X轴顺时针方向夹角
+		float angle = fatherAngle + (float) Math.sin(Math.toRadians(currentPercent * 1.5 * waveFrequence)) * 35;//中心轴线和X轴顺时针方向夹角
 		//身长
 		float segementLenght = segmentRadius * (MP + 2.7f);
 		PointF endPoint = calculatPoint(mainPoint, segementLenght, angle-180);
@@ -276,6 +304,12 @@ public class FishDrawable extends Drawable {
 		mPath.lineTo(point3.x, point3.y);
 		mPath.lineTo(point4.x, point4.y);
 		canvas.drawPath(mPath, mPaint);
+		canvas.drawLine(mainPoint.x,mainPoint.y,endPoint.x,endPoint.y,framePaint);
+		drawPoint(point1,canvas);
+		drawPoint(point2,canvas);
+		drawPoint(point3,canvas);
+		drawPoint(point4,canvas);
+		drawPoint(endPoint,canvas);
 	}
 
 	/**
@@ -297,6 +331,8 @@ public class FishDrawable extends Drawable {
 		mPaint.setColor(Color.argb(FINS_ALPHA, 244, 92, 71));
 		canvas.drawPath(mPath, mPaint);
 		mPaint.setColor(Color.argb(OTHER_ALPHA, 244, 92, 71));
+		drawPoint(endPoint,canvas);
+		drawPoint(contralPoint,canvas);
 
 	}
 
@@ -309,7 +345,7 @@ public class FishDrawable extends Drawable {
 	 * @param maxWidth
 	 */
 	private void makeTail(Canvas canvas, PointF mainPoint, float length, float maxWidth, float angle) {
-		float newWidth = (float) Math.abs(Math.sin(Math.toRadians(currentValue * 1.7 * waveFrequence)) * maxWidth + HEAD_RADIUS/5*3);
+		float newWidth = (float) Math.abs(Math.sin(Math.toRadians(currentPercent * 1.7 * waveFrequence)) * maxWidth + HEAD_RADIUS/5*3);
 		//endPoint为三角形底边中点
 		PointF endPoint = calculatPoint(mainPoint, length, angle-180);
 		PointF endPoint2 = calculatPoint(mainPoint, length - 10, angle-180);
@@ -332,6 +368,12 @@ public class FishDrawable extends Drawable {
 		mPath.lineTo(point2.x, point2.y);
 		mPath.lineTo(mainPoint.x, mainPoint.y);
 		canvas.drawPath(mPath, mPaint);
+		drawPoint(point1,canvas);
+		drawPoint(point2,canvas);
+		drawPoint(point3,canvas);
+		drawPoint(point4,canvas);
+		drawPoint(endPoint,canvas);
+		drawPoint(endPoint2,canvas);
 
 	}
 
@@ -345,11 +387,12 @@ public class FishDrawable extends Drawable {
 	}
 
 	/**
-	 *  输入起点、长度、旋转角度计算终点
-	 * @param startPoint 起点
-	 * @param length 长度
-	 * @param angle 旋转角度
-	 * @return 计算结果点
+	 * 起点长度角度计算终点
+	 *	正逆负顺
+	 * @param startPoint
+	 * @param length
+	 * @param angle
+	 * @return
 	 */
 	private static PointF calculatPoint(PointF startPoint, float length, float angle) {
 		float deltaX = (float) Math.cos(Math.toRadians(angle)) * length;

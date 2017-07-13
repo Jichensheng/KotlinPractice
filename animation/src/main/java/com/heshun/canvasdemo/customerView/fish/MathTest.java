@@ -7,6 +7,8 @@ package com.heshun.canvasdemo.customerView.fish;
  */
 public class MathTest {
 	public static void main(String[] args) {
+		System.out.println((float)Math.sin( Math.toRadians(30) ));
+		System.out.println((float) Math.sin( Math.PI*30/180 ));
 		double a = 30;
 		double b = 150;
 
