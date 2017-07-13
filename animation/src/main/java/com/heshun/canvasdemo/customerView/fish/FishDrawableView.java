@@ -81,6 +81,7 @@ public class FishDrawableView extends RelativeLayout {
 		ivFish.setLayoutParams(params);
 		fishDrawable=new FishDrawable(context);
 		ivFish.setImageDrawable(fishDrawable);
+
 		addView(ivFish);
 	}
 
@@ -182,7 +183,7 @@ public class FishDrawableView extends RelativeLayout {
 
 
 	/**
-	 * 起点长度角度计算终点
+	 * 起点\长度\角度计算终点
 	 * 正逆负顺
 	 *
 	 * @param startPoint
@@ -224,7 +225,7 @@ public class FishDrawableView extends RelativeLayout {
 				((Math.sqrt((head.x - center.x) * (head.x - center.x) + (head.y - center.y) * (head.y - center.y)))
 						* (Math.sqrt((touch.x - center.x) * (touch.x - center.x) + (touch.y - center.y) * (touch.y - center.y)))));
 		System.out.println(angleCos + "angleCos");
-		//弧度值*180
+
 		float temAngle = (float) Math.toDegrees(Math.acos(angleCos));
 		//判断方向  正左侧  负右侧 0线上,但是Android的坐标系Y是朝下的，所以左右颠倒一下
 		float direction = (center.x - touch.x) * (head.y - touch.y) - (center.y - touch.y) * (head.x - touch.x);

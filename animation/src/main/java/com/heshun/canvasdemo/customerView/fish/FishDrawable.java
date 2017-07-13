@@ -38,7 +38,7 @@ public class FishDrawable extends Drawable {
 	//控制区域
 	private int currentPercent = 0;//全局控制标志
 	private float mainAngle = new Random().nextFloat() * 360;//角度表示的角
-//	private float mainAngle =180;//角度表示的角
+//	private float mainAngle =90;//角度表示的角
 	protected ObjectAnimator finsAnimator;
 	private float waveFrequence = 1;
 	//鱼头点
