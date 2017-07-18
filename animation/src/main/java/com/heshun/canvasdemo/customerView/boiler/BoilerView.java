@@ -137,7 +137,7 @@ public class BoilerView extends RelativeLayout implements OnWaterFullListener {
 		ObjectAnimator bodyAlpha = makeAnimator(0, body, "alpha", 1000, 0, 0.2f, 1);
 
 		//锅盖斜上方下来转正逐渐显示
-		ObjectAnimator covertPath = ObjectAnimator.ofFloat(covert, "x", "y", AnimatorUtils.makeBezierJumpPath(getPoint(200),-getPoint(76),0,getPoint(20)));
+		ObjectAnimator covertPath = ObjectAnimator.ofFloat(covert, "x", "y", AnimatorUtils.makeBezierJumpPath(getPoint(200),-getPoint(10),0,getPoint(20)));
 		covertPath.setStartDelay(1000);
 		covertPath.setDuration(1000);
 		covertPath.addListener(new AnimatorListenerAdapter() {

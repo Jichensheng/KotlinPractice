@@ -16,8 +16,8 @@
         android:orientation="horizontal">
 
         <com.heshun.canvasdemo.customerView.wave.Wave
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             app:text="贴"/>
     </LinearLayout>
 

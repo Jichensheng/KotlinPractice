@@ -6,6 +6,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -77,6 +78,7 @@ public class FishDrawableView extends RelativeLayout {
 
 
 		ivFish = new ImageView(context);
+		ivFish.setBackgroundColor(Color.rgb(146,210,255));
 		RelativeLayout.LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 		ivFish.setLayoutParams(params);
 		fishDrawable = new FishDrawable(context);
@@ -120,7 +122,7 @@ public class FishDrawableView extends RelativeLayout {
 		path.moveTo(ivFish.getX(), ivFish.getY());
 		final float angle = includedAngle(fishMiddle, fishHead, touch);
 		float delta = calcultatAngle(fishMiddle, fishHead);
-		PointF controlF = calculatPoint(fishMiddle, 224, angle / 2 + delta);
+		PointF controlF = calculatPoint(fishMiddle, 1.6f*fishDrawable.HEAD_RADIUS, angle / 2 + delta);
 		path.cubicTo(fishHead.x, fishHead.y, controlF.x, controlF.y, touch.x - fishDrawable.getHeadPoint().x, touch.y - fishDrawable.getHeadPoint().y);
 
 		final float[] pos = new float[2];

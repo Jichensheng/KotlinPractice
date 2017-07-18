@@ -42,7 +42,7 @@ public class FireView extends RelativeLayout {
         f32 = (ImageView) view.findViewById(R.id.iv_fire32);
 
         ObjectAnimator aF11X = makeAnimator(f11, "scaleX", 0, 0.7f,0.6f,0.7f);
-        ObjectAnimator aF11Y = makeAnimator(f11, "scaleY", 0,   0.7f,0.6f,0.7f);
+        ObjectAnimator aF11Y = makeAnimator(f11, "scaleY", 0, 0.7f,0.6f,0.7f);
         ObjectAnimator aF11Alpha = makeAnimator(f11, "alpha", 0, 0.7f,0.6f,0.7f);
 
         ObjectAnimator aF12X = makeAnimator(f12, "scaleX", 200, 0.8f,0.7f,0.8f);

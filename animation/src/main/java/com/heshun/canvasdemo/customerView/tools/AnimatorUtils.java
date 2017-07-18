@@ -30,7 +30,7 @@ public class AnimatorUtils {
     public static Path makeBezierJumpPath(int sX, int sY, int eX, int eY) {
         Path path = new Path();
         path.moveTo(sX, sY);
-        path.quadTo(eX, sY-sY*0.3f, eX, eY);
+        path.quadTo((eX+sX)/2, -1.5f*sY, eX, eY);
         path.lineTo(eX, eY*0.8f);
         path.lineTo(eX, eY);
         path.lineTo(eX, eY*0.9f);

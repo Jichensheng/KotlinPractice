@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class FishDrawable extends Drawable {
 	private static final String TAG = "Jcs_Fishsss";
-	private static final float HEAD_RADIUS = 80;
+	public static final float HEAD_RADIUS = 30;
 	protected static final float BODY_LENGHT = HEAD_RADIUS * 3.2f; //第一节身体长度
 	private static final int BODY_ALPHA = 220;
 	private static final int OTHER_ALPHA = 160;

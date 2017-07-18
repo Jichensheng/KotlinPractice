@@ -9,11 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.heshun.canvasdemo.customerView.boiler.BoilerView;
+import com.heshun.canvasdemo.customerView.boiler.WaterView;
 import com.heshun.canvasdemo.customerView.fish.FishDrawable;
 import com.heshun.canvasdemo.customerView.fish.TestBizer;
 import com.heshun.canvasdemo.customerView.volume.VolumeSliderView;
@@ -75,21 +74,8 @@ public class MainActivity extends Activity {
 		});
 		ivdongt.setImageDrawable(drawable1);
 
-
-		final BoilerView boilerView= (BoilerView) v5.findViewById(R.id.bv_boiler_view);
-		Button btn= (Button) v5.findViewById(R.id.btn_anim);
-		btn.setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				if (v instanceof Button) {
-					if (((Button) v).getText()=="STOP") {
-						((Button) v).setText("START");
-					}else {
-						((Button) v).setText("STOP");
-					}
-				}
-			}
-		});
+		WaterView waterView= (WaterView) v5.findViewById(R.id.water_test);
+		waterView.startAnimator();
 
 		VolumeSliderView mSliderView;
 		final TextView mTextView;
@@ -104,10 +90,10 @@ public class MainActivity extends Activity {
 
 
 		viewList = new ArrayList<>();
-		viewList.add(new TestBizer(this));
-		viewList.add(v7);
 		viewList.add(v5);
 		viewList.add(v6);
+		viewList.add(new TestBizer(this));
+		viewList.add(v7);
 		viewList.add(v1);
 		viewList.add(v2);
 		viewList.add(v3);
