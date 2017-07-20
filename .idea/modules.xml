@@ -7,6 +7,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/cardregion/cardregion.iml" filepath="$PROJECT_DIR$/cardregion/cardregion.iml" />
       <module fileurl="file://$PROJECT_DIR$/firstkotlin/firstkotlin.iml" filepath="$PROJECT_DIR$/firstkotlin/firstkotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/layoutmanagers/layoutmanagers.iml" filepath="$PROJECT_DIR$/layoutmanagers/layoutmanagers.iml" />
       <module fileurl="file://$PROJECT_DIR$/ocr_ui/ocr_ui.iml" filepath="$PROJECT_DIR$/ocr_ui/ocr_ui.iml" />
     </modules>
   </component>

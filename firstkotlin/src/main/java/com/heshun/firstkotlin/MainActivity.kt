@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private var tv_touch:TextView?=null
     private var tv_anim:TextView?=null
     private var tv_learning:TextView?=null
+    private var tv_lm:TextView?=null
     var fl_flow: FlowLayout?=null;
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +36,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         tv_love=findViewById(R.id.tv_love) as TextView
         tv_touch=findViewById(R.id.tv_touch) as TextView
         tv_anim=findViewById(R.id.tv_anim) as TextView
+        tv_lm=findViewById(R.id.tv_lm) as TextView
         tv_anim!!.setOnClickListener(this)
         tv_love!!.setOnClickListener(this)
         tv_touch!!.setOnClickListener(this)
         tv_learning=findViewById(R.id.tv_learning) as TextView
         tv_learning!!.setOnClickListener(this)
+        tv_lm!!.setOnClickListener(this)
         fl_flow=findViewById(R.id.fl_flow) as FlowLayout
         tv_kotlinx.text = "你好，kotlin！"
         Thread(Runnable { tv_kotlinx.text = "不错，我是在非UI线程里" }).start()
@@ -93,6 +96,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.tv_anim->{
                 startActivity(Intent(this,AnimActivity::class.java))
+            }
+            R.id.tv_lm->{
+                startActivity(Intent(this,LMActivity::class.java))
             }
         }
     }

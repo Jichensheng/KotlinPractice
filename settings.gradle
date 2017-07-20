@@ -1,1 +1,1 @@
-include ':app', ':firstkotlin', ':animation', ':cardregion', ':ocr_ui'
+include ':app', ':firstkotlin', ':animation', ':cardregion', ':ocr_ui', ':layoutmanagers'

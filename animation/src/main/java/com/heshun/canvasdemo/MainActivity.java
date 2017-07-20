@@ -12,6 +12,9 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.layers.LottieDrawable;
+import com.airbnb.lottie.model.LottieComposition;
 import com.heshun.canvasdemo.customerView.boiler.WaterView;
 import com.heshun.canvasdemo.customerView.fish.FishDrawable;
 import com.heshun.canvasdemo.customerView.fish.TestBizer;
@@ -23,7 +26,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 	private ViewPager viewPager;
-	private View v1, v2, v3, v4,v5,v6,v7;
+	private View v1, v2, v3, v4,v5,v6,v7,v8;
 	private List<View> viewList;
 	boolean ani=true;
 	//private IndicatorView indicatorView;
@@ -47,6 +50,7 @@ public class MainActivity extends Activity {
 		v5 = inflater.inflate(R.layout.layout_boiler, null);
 		v6 = inflater.inflate(R.layout.layout_laba,null);
 		v7 = inflater.inflate(R.layout.layout_fish_drawable,null);
+		v8 = inflater.inflate(R.layout.layout_lottie,null);
 
 		ImageView iv_fish= (ImageView) v2.findViewById(R.id.iv_fish);
         FishDrawable fishDrawable=new FishDrawable(this);
@@ -90,6 +94,20 @@ public class MainActivity extends Activity {
 
 
 		viewList = new ArrayList<>();
+		viewList.add(v8);
+		LottieAnimationView animationView = (LottieAnimationView) v8.findViewById(R.id.animation_view);
+		animationView.setAnimation("empty_status.json");
+		animationView.loop(true);
+
+		ImageView iv_lottie= (ImageView) v8.findViewById(R.id.iv_lottie);
+		final LottieDrawable drawable = new LottieDrawable();
+		LottieComposition.fromAssetFileName(this, "empty_status.json", new LottieComposition.OnCompositionLoadedListener() {
+			@Override
+			public void onCompositionLoaded(LottieComposition composition) {
+				drawable.setComposition(composition);
+			}
+		});
+		iv_lottie.setImageDrawable(drawable);
 		viewList.add(v5);
 		viewList.add(v6);
 		viewList.add(new TestBizer(this));

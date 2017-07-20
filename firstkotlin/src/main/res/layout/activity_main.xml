@@ -44,6 +44,7 @@
                 android:text="VP、VG、CLIP" />
 
             <TextView
+                android:id="@+id/tv_lm"
                 style="@style/text_flag_02"
                 android:text="挣钱ing"
                 android:textColor="#888888"  />
