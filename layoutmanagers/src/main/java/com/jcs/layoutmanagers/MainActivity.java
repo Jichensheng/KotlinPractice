@@ -20,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
 		list=initData();
 		mRv= (RecyclerView) findViewById(R.id.rv_lm);
 //		mRv.setLayoutManager(new RvLm());
-		mRv.setLayoutManager(new LinearLayoutManager(this));
+		LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+		layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+		mRv.setLayoutManager(layoutManager);
 		adapter =new RvAdapter(list,this);
 		mRv.setAdapter(adapter);
 
 		RvCallback callback=new RvCallback(ItemTouchHelper.DOWN | ItemTouchHelper.UP ,
-				ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT,mRv,adapter,list);
+				ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT|ItemTouchHelper.DOWN | ItemTouchHelper.UP ,mRv,adapter,list);
 		ItemTouchHelper touchHelper=new ItemTouchHelper(callback);
 		touchHelper.attachToRecyclerView(mRv);
 
