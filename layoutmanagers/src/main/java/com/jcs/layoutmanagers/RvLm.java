@@ -1,6 +1,7 @@
 package com.jcs.layoutmanagers;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -11,14 +12,36 @@ import android.view.ViewGroup;
 public class RvLm extends RecyclerView.LayoutManager {
 	private static final String TAG = "+-+-";
 
+
 	@Override
 	public RecyclerView.LayoutParams generateDefaultLayoutParams() {
 		return new RecyclerView.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 	}
 
+/*	*//**
+	 * 支持滚动
+	 * @return
+	 *//*
+	@Override
+	public boolean canScrollVertically() {
+		return true;
+	}
+
+	*//**
+	 * 实现滚动
+	 * @param recycler
+	 * @param state
+	 * @return
+	 *//*
+	@Override
+	public int scrollVerticallyBy(int dy, RecyclerView.Recycler recycler, RecyclerView.State state) {
+		offsetChildrenVertical(-dy);
+		return dy;
+	}*/
 	@Override
 	public void onLayoutChildren(RecyclerView.Recycler recycler, RecyclerView.State state) {
 		detachAndScrapAttachedViews(recycler);
+		Log.e(TAG, String.format("onLayoutChildren:childCount=: %s  itemCount=： %s ",getChildCount(),getItemCount() ));
 		int itemCount = getItemCount();
 		if (itemCount < 1) {
 			return;
@@ -33,8 +56,8 @@ public class RvLm extends RecyclerView.LayoutManager {
 			layoutDecoratedWithMargins(view, widSpace / 2, heiSpace / 2,
 					widSpace / 2 + getDecoratedMeasuredWidth(view), heiSpace / 2 + getDecoratedMeasuredHeight(view));
 			view.setTranslationY((itemCount-i)*100);
-			view.setScaleX(i*0.1f);
-			view.setScaleY(i*0.1f);
+			view.setScaleX(i*0.01f);
+			view.setScaleY(i*0.01f);
 		}
 
 	}

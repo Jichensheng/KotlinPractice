@@ -24,6 +24,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.RvHolder> {
 
 	@Override
 	public RvHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+//		return new RvHolder(new Item(context));
 		return new RvHolder(LayoutInflater.from(context).inflate(R.layout.rv_lm_item, parent, false));
 	}
 

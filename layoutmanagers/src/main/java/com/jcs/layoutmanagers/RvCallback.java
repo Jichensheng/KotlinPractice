@@ -43,7 +43,7 @@ public class RvCallback extends ItemTouchHelper.SimpleCallback {
 		Log.e(TAG, "onMove: " + "viewHolder = " + viewHolder.getAdapterPosition() + "     target = " + target.getAdapterPosition());
 		Collections.swap(list, viewHolder.getAdapterPosition(), target.getAdapterPosition());
 		adapter.notifyItemMoved(viewHolder.getAdapterPosition(), target.getAdapterPosition());
-		return true;
+		return false;
 	}
 
 	/**
@@ -74,6 +74,7 @@ public class RvCallback extends ItemTouchHelper.SimpleCallback {
 	@Override
 	public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
 		super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
+		Log.e(TAG, String.format("onChildDraw:childCount=: %s  itemCount=： %s ",recyclerView.getChildCount(),recyclerView.getLayoutManager().getItemCount() ));
 /*		double swipValue = Math.sqrt(dX * dX + dY * dY);
 		double fraction = swipValue / (mRv.getWidth() * 0.5f);
 		fraction = fraction > 1 ? 1 : fraction;

@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.heshun.firstkotlin.R;
 
 /**
+ * 代金券
  * author：Jics
  * 2017/6/14 13:09
  */
