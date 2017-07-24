@@ -1,6 +1,7 @@
 package com.heshun.canvasdemo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
@@ -98,6 +99,14 @@ public class MainActivity extends Activity {
 		LottieAnimationView animationView = (LottieAnimationView) v8.findViewById(R.id.animation_view);
 		animationView.setAnimation("empty_status.json");
 		animationView.loop(true);
+
+        animationView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,MainActivity2.class);
+                startActivity(intent);
+            }
+        });
 
 		ImageView iv_lottie= (ImageView) v8.findViewById(R.id.iv_lottie);
 		final LottieDrawable drawable = new LottieDrawable();

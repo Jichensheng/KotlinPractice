@@ -4,6 +4,9 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ComposePathEffect;
+import android.graphics.CornerPathEffect;
+import android.graphics.DiscretePathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathDashPathEffect;
@@ -49,8 +52,9 @@ public class Item extends LinearLayout {
 		dashPaint.setStrokeWidth(2);
 		Path path = new Path();
 		path.addCircle(0, 0, 2, Path.Direction.CCW);
-		dashPaint.setPathEffect(new PathDashPathEffect(path, 15, 0, PathDashPathEffect.Style.ROTATE));
+//		dashPaint.setPathEffect(new PathDashPathEffect(path, 15, 0, PathDashPathEffect.Style.ROTATE));
 		//dashPaint.setPathEffect(new DashPathEffect(new float[] {15, 5}, 0));
+//		dashPaint.setPathEffect(new DiscretePathEffect(15,5));
 		dashPaint.setStrokeCap(Paint.Cap.ROUND);
 		dashPaint.setXfermode(xfermode);
 
@@ -88,10 +92,16 @@ public class Item extends LinearLayout {
 		Path path = new Path();
 		path.addCircle(0, 0, 4, Path.Direction.CCW);
 		//圆点 间距 偏移量
-		dashPaint.setPathEffect(new PathDashPathEffect(path, 30, 0, PathDashPathEffect.Style.ROTATE));
+//		dashPaint.setPathEffect(new PathDashPathEffect(path, 30, 0, PathDashPathEffect.Style.ROTATE));
 		//线
 //		dashPaint.setPathEffect(new DashPathEffect(new float[] {15, 5}, 0));
 //		dashPaint.setStrokeCap(Paint.Cap.ROUND);
+        //毛刺
+        dashPaint.setPathEffect(new DiscretePathEffect(1,11));
+        //组合毛刺
+//        dashPaint.setPathEffect(new ComposePathEffect(new DiscretePathEffect(1,11),new DiscretePathEffect(11,21)));
+        //不懂
+//        dashPaint.setPathEffect(new CornerPathEffect(30));
 		dashPaint.setXfermode(xfermode);
 
 		//背景画笔
@@ -105,7 +115,8 @@ public class Item extends LinearLayout {
 
 		Path dashPath = new Path();
 		dashPath.moveTo(0, bitCanvas.getHeight() / 2);
-		dashPath.quadTo(bitCanvas.getWidth() / 2, bitCanvas.getHeight()*1.32F, bitCanvas.getWidth(), bitCanvas.getHeight() / 2);
+        dashPath.lineTo(bitCanvas.getWidth() / 3, bitCanvas.getHeight()*0.8f);
+		dashPath.quadTo(bitCanvas.getWidth() / 3*2, bitCanvas.getHeight()*1.32F, bitCanvas.getWidth(), bitCanvas.getHeight() / 2);
 		bitCanvas.drawPath(dashPath, dashPaint);
 		bitCanvas.drawCircle(bitCanvas.getWidth() / 3, bitCanvas.getHeight()*0.32F,50,dashPaint);
 		bitCanvas.drawCircle(bitCanvas.getWidth() / 3*2, bitCanvas.getHeight()*0.32F,50,dashPaint);
@@ -115,7 +126,7 @@ public class Item extends LinearLayout {
 		paint.setTextAlign(Paint.Align.CENTER);
 		dashPath.reset();
 		dashPath.moveTo(0, bitCanvas.getHeight() / 2);
-		dashPath.quadTo(bitCanvas.getWidth() / 2, -bitCanvas.getHeight()*0.32F, bitCanvas.getWidth(), bitCanvas.getHeight() / 2);
+        dashPath.quadTo(bitCanvas.getWidth() / 2, -bitCanvas.getHeight()*0.32F, bitCanvas.getWidth(), bitCanvas.getHeight() / 2);
 		bitCanvas.drawTextOnPath("践行社会主义核心价值观",dashPath,0,11,paint);
 		for (int i = 0; i < 30; i++) {
 			bitCanvas.drawCircle(40 * i, 0, 20, paint);

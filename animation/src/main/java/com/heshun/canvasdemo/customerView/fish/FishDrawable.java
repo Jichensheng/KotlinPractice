@@ -88,7 +88,7 @@ public class FishDrawable extends Drawable {
 			@Override
 			public void onAnimationUpdate(ValueAnimator animation) {
 				currentValue = (int) (animation.getAnimatedValue());
-//				mainAngle = currentValue % 360;
+				mainAngle = currentValue % 360;
 				invalidateSelf();
 			}
 		});

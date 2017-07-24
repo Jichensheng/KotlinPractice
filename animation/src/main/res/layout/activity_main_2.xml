@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/container_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_marginLeft="100px"
+            android:id="@+id/first"
+            android:layout_width="wrap_content"
+            android:background="#91ff8c"
+            android:layout_height="wrap_content"
+            android:text="我是TranslationX   marginLeft=100"
+            />
+        <TextView
+            android:layout_marginLeft="100px"
+            android:id="@+id/two"
+            android:layout_width="wrap_content"
+            android:background="#36ffde"
+            android:layout_height="wrap_content"
+            android:text="我是X   marginLeft=100"
+            />
+    </LinearLayout>
+
+    <TextView
+    android:id="@+id/three"
+    android:layout_width="wrap_content"
+    android:background="#ff6236"
+    android:layout_height="wrap_content"
+    android:text="我是固定的500"
+    />
+    <com.heshun.canvasdemo.customerView.surfaceView.JSerfaceView
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+</LinearLayout>
