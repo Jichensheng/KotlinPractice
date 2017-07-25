@@ -1,5 +1,6 @@
 package com.heshun.firstkotlin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.heshun.firstkotlin.customer.behavior.BehaviorActivity;
 import com.heshun.firstkotlin.customer.layoutManager.CardConfig;
 import com.heshun.firstkotlin.customer.layoutManager.OverLayCardLayoutManager;
 import com.heshun.firstkotlin.customer.layoutManager.RenRenCallback;
+import com.heshun.firstkotlin.customer.xfermode.GirlView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +29,13 @@ public class LMActivity extends AppCompatActivity {
 	protected void onCreate(@Nullable Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_lm);
+		GirlView girlView= (GirlView) findViewById(R.id.girl);
+		girlView.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				startActivity(new Intent(LMActivity.this, BehaviorActivity.class));
+			}
+		});
 		RecyclerView.Adapter adapter = new RecyclerView.Adapter() {
 			@Override
 			public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

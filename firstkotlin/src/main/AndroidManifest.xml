@@ -19,6 +19,7 @@
         <activity android:name=".TouchActivity"/>
         <activity android:name=".AnimActivity"/>
         <activity android:name=".LMActivity"/>
+        <activity android:name=".customer.behavior.BehaviorActivity"/>
         <activity
             android:name=".RedBookActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"

@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+      <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+    <com.heshun.firstkotlin.customer.xfermode.GirlView
+        android:id="@+id/girl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+          <LinearLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+              <com.heshun.firstkotlin.customer.xfermode.XferView
+                  android:layout_width="360px"
+                  android:layout_height="400px"
+              />
+              <com.heshun.firstkotlin.customer.xfermode.XferView2
+                  android:layout_width="360px"
+                  android:layout_height="400px"
+              />
+              <com.heshun.firstkotlin.customer.xfermode.XferView3
+                  android:layout_width="360px"
+                  android:layout_height="400px"
+              />
+          </LinearLayout>
+
+          <LinearLayout android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="horizontal">
+
+              <com.heshun.firstkotlin.customer.xfermode.XferView_r
+                  android:layout_width="360px"
+                  android:layout_height="400px"
+              />
+              <com.heshun.firstkotlin.customer.xfermode.XferView2_r
+                  android:layout_width="360px"
+                  android:layout_height="400px"
+              />
+              <com.heshun.firstkotlin.customer.xfermode.XferView3_r
+                  android:layout_width="360px"
+                  android:layout_height="400px"
+              />
+          </LinearLayout>
+
+          <android.support.v7.widget.RecyclerView
+              android:id="@+id/rv_lm"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<android.support.v7.widget.RecyclerView
-    android:id="@+id/rv_lm"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-</android.support.v7.widget.RecyclerView>
-</LinearLayout>
+          </android.support.v7.widget.RecyclerView>
+      </LinearLayout>

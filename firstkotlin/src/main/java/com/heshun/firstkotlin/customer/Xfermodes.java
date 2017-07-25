@@ -46,7 +46,7 @@ public class Xfermodes extends Activity {
         setContentView(new SampleView(this));
     }
 
-    private static class SampleView extends View {
+    private static class SampleViews extends View {
         private static final int W = 64;
         private static final int H = 64;
         private static final int ROW_MAX = 4;   // number of samples per row
@@ -81,7 +81,7 @@ public class Xfermodes extends Activity {
             "Darken", "Lighten", "Multiply", "Screen"
         };
 
-        public SampleView(Context context) {
+        public SampleViews(Context context) {
             super(context);
 
             mSrcB = makeSrc(W, H);

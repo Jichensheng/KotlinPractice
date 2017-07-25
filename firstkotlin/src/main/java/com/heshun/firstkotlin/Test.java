@@ -19,7 +19,7 @@ public class Test {
 	/*	printSwitch();
 
 
-		Test test = new Test();
+		TestCar test = new TestCar();
 		List<ChildView> childs = test.getChilds();
 		int margin = 10;
 		int l = 0;
