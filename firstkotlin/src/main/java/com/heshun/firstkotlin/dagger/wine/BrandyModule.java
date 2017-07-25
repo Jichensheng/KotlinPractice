@@ -44,13 +44,14 @@ public class BrandyModule {
      * @return
 	 */
     @Provides
+    @Named("CabernetSauvignon")
     public Wine provideOtherWine(@Named("CabernetSauvignon") Grape grape, FermentBarrel fermentBarrel) {
         return new Wine(grape, fermentBarrel);
     }
 
     @Provides
     @Named("CabernetSauvignon")
-    public Brandy provideOtherBrandy(Wine wine, Distiller distiller) {
+    public Brandy provideOtherBrandy(@Named("CabernetSauvignon") Wine wine, Distiller distiller) {
         return new Brandy(distiller, wine);
     }
 }

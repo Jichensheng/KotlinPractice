@@ -11,7 +11,9 @@ import javax.inject.Named;
  * Updated:
  */
 public class TestDagger {
-
+    /**
+     * BrandyComponent中并没有定义没有别名的Brandy,此处使用的是Inject方法
+     */
     @Inject
     Brandy mBrandy;
 
@@ -30,6 +32,7 @@ public class TestDagger {
 
     @Override
     public String toString() {
+//        return mBrandy.toString();
         return mBrandy.toString()+"\n"+mCSBrandy.toString();
     }
 }

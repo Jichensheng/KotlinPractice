@@ -7,6 +7,6 @@ package com.heshun.firstkotlin.dagger.wine;
 public class WineTest {
 	public static void main(String[] args){
 		System.out.println(new TestDagger().toString());
-		System.out.println(new OtherTest().toString());
+//		System.out.println(new OtherTest().toString());
 	}
 }
