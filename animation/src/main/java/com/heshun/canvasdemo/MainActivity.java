@@ -27,7 +27,7 @@ import java.util.List;
 
 public class MainActivity extends Activity {
 	private ViewPager viewPager;
-	private View v1, v2, v3, v4,v5,v6,v7,v8;
+	private View v1, v2, v3, v4,v5,v6,v7,v8,v9;
 	private List<View> viewList;
 	boolean ani=true;
 	//private IndicatorView indicatorView;
@@ -52,6 +52,7 @@ public class MainActivity extends Activity {
 		v6 = inflater.inflate(R.layout.layout_laba,null);
 		v7 = inflater.inflate(R.layout.layout_fish_drawable,null);
 		v8 = inflater.inflate(R.layout.layout_lottie,null);
+		v9 = inflater.inflate(R.layout.layout_svg,null);
 
 		ImageView iv_fish= (ImageView) v2.findViewById(R.id.iv_fish);
         FishDrawable fishDrawable=new FishDrawable(this);
@@ -95,6 +96,7 @@ public class MainActivity extends Activity {
 
 
 		viewList = new ArrayList<>();
+		viewList.add(v9);
 		viewList.add(v8);
 		LottieAnimationView animationView = (LottieAnimationView) v8.findViewById(R.id.animation_view);
 		animationView.setAnimation("empty_status.json");
