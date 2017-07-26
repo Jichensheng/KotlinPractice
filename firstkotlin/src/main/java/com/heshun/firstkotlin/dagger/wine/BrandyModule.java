@@ -19,12 +19,6 @@ import dagger.Provides;
  */
 @Module
 public class BrandyModule {
-    /**
-     * @Provides
-        在提供实例的方法上注解，用于告诉 Dagger 这是一个用于注入的实例。
-        方法名可以随便，Dagger 是通过方法的返回值来将其添加到依赖列表的。
-     * @return
-	 */
     @Provides
     public Grape provideGrape() {
         return new Grape("解百纳");
@@ -35,14 +29,6 @@ public class BrandyModule {
     public Grape provideOtherGrape() {
         return new Grape("赤霞珠");
     }
-
-    /**
-     * @Named 注解用于给 @Provides 注解提供别名
-     * 在使用的时候也需要加上 @Named 注解，Dagger 就知道我们需要的是具体哪个实例了
-     * @param grape
-     * @param fermentBarrel
-     * @return
-	 */
     @Provides
     @Named("CabernetSauvignon")
     public Wine provideOtherWine(@Named("CabernetSauvignon") Grape grape, FermentBarrel fermentBarrel) {

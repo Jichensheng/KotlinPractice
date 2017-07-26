@@ -1,6 +1,8 @@
 package com.heshun.firstkotlin.dagger.wine;
 
 import com.heshun.firstkotlin.dagger.wine.entity.Brandy;
+import com.heshun.firstkotlin.dagger.wine.entity.Heater;
+import com.heshun.firstkotlin.dagger.wine.entity.Wine;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -11,12 +13,19 @@ import javax.inject.Named;
  * Updated:
  */
 public class TestDagger {
+
+
     /**
      * BrandyComponent中并没有定义没有别名的Brandy,此处使用的是Inject方法
      */
     @Inject
     Brandy mBrandy;
 
+    @Inject
+    Wine wine;
+    @Inject
+    @Named("CabernetSauvignon")
+    Wine cabernetSauvignonWin;
     @Inject
     @Named("CabernetSauvignon")
     Brandy mCSBrandy;
@@ -28,6 +37,7 @@ public class TestDagger {
                 .baseComponent(Singleton.getInstance().getBaseComponent())
                 .build()
                 .inject(this);
+        System.out.println(wine.toString()+"-------------"+cabernetSauvignonWin.toString());
     }
 
     @Override

@@ -8,11 +8,12 @@ import javax.inject.Inject;
  * Updated:
  */
 public class Wine {
+
     private Grape mGrape;
     private FermentBarrel mFermentBarrel;
 
     @Inject
-    public Wine(Grape grape, FermentBarrel fermentBarrel) {
+    public Wine( Grape grape, FermentBarrel fermentBarrel) {
         mGrape = grape;
         mFermentBarrel = fermentBarrel;
     }
@@ -22,3 +23,5 @@ public class Wine {
         return mGrape.toString()+"发酵的原浆";
     }
 }
+
+

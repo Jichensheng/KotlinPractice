@@ -1,15 +1,12 @@
 package com.heshun.firstkotlin.dagger.Car.bean;
 
-import javax.inject.Inject;
-
 /**
  * author：Jics
  * 2017/7/25 20:07
  */
 public class BranchName {
-	@Inject
-	public BranchName() {
-		System.out.println("我是Jcs");
+	public BranchName(String name) {
+		System.out.println("我是"+name);
 	}
 
 	@Override

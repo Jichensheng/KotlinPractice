@@ -12,7 +12,6 @@ public class A {
 
 	@Inject
 	public A() {
-
 		System.out.println("A类");
 	}
 }

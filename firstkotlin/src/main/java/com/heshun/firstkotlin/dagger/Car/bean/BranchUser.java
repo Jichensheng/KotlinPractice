@@ -12,6 +12,10 @@ import javax.inject.Inject;
 public class BranchUser {
 	@Inject
 	Branch branch ;
+/*	@Inject
+	@Named("nameddddd")
+	Branch branch ;*/
+
 
 	public BranchUser() {
 		DaggerBranchComponent.builder()
